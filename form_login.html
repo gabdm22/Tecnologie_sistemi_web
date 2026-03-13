@@ -7,24 +7,28 @@
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <div class="titolo">
-        <h1>MOVA</h1>
-    </div>
-    <div class = "form">
-    <form action="/login" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username"><br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password"><br><br>
-        <input type="submit" value="Login">
-    </form>
+    <div class="login-container">
+        
+        <div class="FORM">
+            <h1 id = "titolo-login">LOGIN</h1>
+            <form action="/login" method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+                <button id = "login-btn" type="submit">Login</button>
+            </form>
+
+            <div class="register-link"> 
+                <h5 class="divider-text">Sei nuovo su MOVA?</h5>
+                <a href="/register" class="btn-mova">Crea il tuo account MOVA</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy;2026 MOVA - Museum of Virtual Art. Creato da Nicolò Carbone e Gabriele Di Martino</p>
+        </footer>
 
     </div>
-    <footer>
-        <div class = "registrazione"> 
-            <h5 class="divider-text">Sei nuovo su MOVA?</h5>
-    <a href="/register" class="btn-mova">Crea il tuo account MOVA</a>
-        <P>&copy;2026 MOVA - Museum of Virtual Art. Creato da Nicolò Carbone e Gabriele Di Martino</P>
-    </footer>
 </body>
 </html>
