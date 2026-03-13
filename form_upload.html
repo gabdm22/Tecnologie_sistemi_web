@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<HTML>
+    <HEAD>
+        <TITLE>Vendi opera</TITLE>
+        <LINK href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+        <LINK rel="stylesheet" href="/style_form_upload.css" type="text/css">
+    </HEAD>
+
+    <BODY>
+        <DIV>
+            <H1 id="titolo">Vendi</H1>
+            <H3 id="sottotitolo">Carica qui la tua opera</H3>
+            <FORM id="form" method="POST" name="form" enctype="multipart/form-data">
+                <LABEL>Nome opera: </LABEL>
+                <INPUT id="nome" name="nome" type="text" minlength="1" maxlength="30" required>
+                <br><br>
+
+                <LABEL>Prezzo: </LABEL>
+                <INPUT id="prezzo" name="prezzo" type="number" required>
+                <br><br>
+
+                <LABEL>Categoria: </LABEL>
+                <SELECT id="categoria" name="categoria" size="1" cols="10" required>
+                    <OPTION selected value="Nessuna selezionata"></OPTION>
+                    <OPTION>Pittura</OPTION>
+                    <OPTION>Scultura</OPTION>
+                    <OPTION>Musica</OPTION>
+                    <OPTION>Cinema</OPTION>
+                </SELECT>
+                <br><br>
+
+                <LABEL>Immagine: </LABEL>
+                <INPUT id="file" name="immagine" type="file" accept="image/jpg, image/jpeg, image/png" value="Carica immagine" required>
+                <br><br>
+
+                <BUTTON id="invia" type="submit">Invia</BUTTON>
+                <BUTTON id="reset" type="reset">Reset</BUTTON>
+            </FORM>
+        </DIV>
+    </BODY>
+</HTML>
