@@ -8,7 +8,7 @@ BODY{
     align-items: center;
     min-height: 100vh;
 
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/static/sfondo.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("static/sfondo.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
