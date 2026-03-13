@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <div>
-        <h1>PRISMA.it</h1>
+    <div class="titolo">
+        <h1>MOVA</h1>
     </div>
+    <div class = "form">
     <form action="/login" method="post">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username"><br><br>
@@ -16,6 +18,13 @@
         <input type="password" id="password" name="password"><br><br>
         <input type="submit" value="Login">
     </form>
-    
+
+    </div>
+    <footer>
+        <div class = "registrazione"> 
+            <h5 class="divider-text">Sei nuovo su MOVA?</h5>
+    <a href="/register" class="btn-mova">Crea il tuo account MOVA</a>
+        <P>&copy;2026 MOVA - Museum of Virtual Art. Creato da Nicolò Carbone e Gabriele Di Martino</P>
+    </footer>
 </body>
 </html>
