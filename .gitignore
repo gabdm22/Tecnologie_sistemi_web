@@ -1,0 +1,12 @@
+#ignora i database
+*.db
+*.sqlite
+database_prova.db
+
+#ignora la cache di python
+__pycache__/
+*.pyc
+
+#ignora ambienti virtuali
+.venv/
+venv/
