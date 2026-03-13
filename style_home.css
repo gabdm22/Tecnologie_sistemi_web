@@ -112,3 +112,12 @@ body{
 .button_acquista:hover{
     background-color: #333333;
 }
+
+footer{
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 50px;
+    color: #cccccc;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
