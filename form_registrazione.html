@@ -5,9 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REGISTAZIONE</title>
     <link rel="stylesheet" href="registrazione.css">
-
 </head>
 <body>
+    <div class="registrazione-conteiner">
+        <div class="FORM">
+            <h1 id = "titolo-registrazione">REGISTRAZIONE</h1>
+            <form action="/register" method="post">
+                <label for="Nome">Nome:</label>
+                <input type="text" id="Nome" name="nome">
+                <label for="Cognome">Cognome:</label>
+                <input type="text" id="Cognome" name="cognome">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+                <label for="confirm_password">Verifica Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password">
+                <button id = "registrazione-btn" type="submit">Registrati</button>
+            </form>
+
+            <div class="login-link"> 
+                <h5 class="divider-text">Hai già un account MOVA?</h5>
+                <a href="form_login.html" class="btn-mova">Accedi al tuo account MOVA</a>
+            </div>
+        </div>
     
+    <footer>
+            <p>&copy;2026 MOVA - Museum of Virtual Art. Creato da Nicolò Carbone e Gabriele Di Martino</p>
+        </footer>
+   </div>
 </body>
 </html>
