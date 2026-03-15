@@ -126,3 +126,9 @@ button{
     background-color: #f2f2f2;
     color: #2c3e50
 }
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.8rem;
+}
