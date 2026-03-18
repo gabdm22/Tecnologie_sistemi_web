@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<HTML>
+    <HEAD>
+        <TITLE>Acquista opera</TITLE>
+        <META name="viewport" content="width=device-width, initial-scale=1.0">
+        <LINK href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+        <LINK rel="stylesheet" href="style_form_acquisto.css" type="text/css">
+    </HEAD>
+
+    <BODY>
+        <DIV>
+            <H1 id="titolo">Acquista</H1>
+            <H3 id="sottotitolo">Inserisci i dati per completare l'acquisto</H3>
+            <FORM id="form_acquisto" method="post" name="form">
+                <LABEL>Nome e cognome: </LABEL>
+                <INPUT type="text" minlength="4" maxlength="30" id="nome_cognome" name="nome_cognome" required>
+                <br><br>
+
+                <LABEL>Indirizzo: </LABEL>
+                <INPUT type="text" minlength="5" maxlength="40" id="indirizzo" name="indirizzo" required>
+                <br><br>
+                
+                <LABEL>Titolare carta: </LABEL>
+                <INPUT type="text" minlength="5" maxlength="40" id="titolare" name="titolare" required>
+                <br><br>
+
+                <LABEL>Numero di carta: </LABEL>
+                <INPUT type="text" minlength="20" maxlength="20" id="numero_carta" name="numero_carta" placeholder="XXXX XXXX XXXX XXXX" required>
+                <br><br>
+
+                <LABEL>Scadenza: </LABEL>
+                <INPUT type="month" id="scadenza" name="scadenza" required>
+                <br><br>
+
+                <LABEL>CVV: </LABEL>
+                <INPUT type="text" pattern="[0-9]{3}" maxlength="3" id="cvv" name="cvv" placeholder="XXX" required>
+                <br><br>
+
+                <BUTTON id="acquista" type="submit">Acquista</BUTTON>
+            </FORM>
+        </DIV>
+    </BODY>
+</HTML>
