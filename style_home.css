@@ -136,6 +136,13 @@ body{
     background-color: #333333;
 }
 
+.button_acquista.disabilitato{
+    background-color: #e0e0e0;
+    color: #9e9e9e;
+    border: 1px solid #e0e0e0;
+    cursor: not-allowed;
+}
+
 footer{
     text-align: center;
     padding: 30px 20px;
