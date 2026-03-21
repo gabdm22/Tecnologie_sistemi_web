@@ -31,7 +31,7 @@ body{
     color: #333; 
     box-sizing: border-box;/* Assicura che il padding non aumenti la larghezza totale del container */
 }
-/*per mobille*/
+/*per mobile*/
 @media (max-width: 768px) {
     body {
         justify-content: center;
