@@ -1,0 +1,63 @@
+body{
+   font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    
+    display: flex;
+    /* Allinea il contenuto a sinistra (inizio) invece che al centro */
+    justify-content: flex-start; 
+    align-items: center; 
+    padding-left: 20%; 
+    
+    padding-right: 20px; 
+    padding-top: 20px;
+    padding-bottom: 20px;
+    
+    min-height: 100vh;
+    background-image: url('static/Sfondo_conferma.png'); 
+    background-repeat: no-repeat;
+    background-position: right center; /* La faccia rimane a destra */
+    background-attachment: fixed;
+    background-size: cover;
+    
+}
+.container{
+    background-color: #ffffff;
+    padding: 40px; 
+    border-radius: 12px;
+    width: 90%; 
+    max-width: 400px; 
+    box-shadow: 0px 8px 24px rgba(0,0,0,0.2);
+    color: #333; 
+    box-sizing: border-box;/* Assicura che il padding non aumenti la larghezza totale del container */
+}
+/*per mobille*/
+@media (max-width: 768px) {
+    body {
+        justify-content: center;
+        padding-left: 20px; 
+    }
+}
+ #btn-assistenza{
+    padding: 10px 20px;
+    background-color: #010c17;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+#btn-assistenza:hover {
+    background-color: #1a1a1a;
+}
+#btn-home {
+    padding: 10px 20px;
+    background-color: #010c17;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+#btn-home:hover {
+    background-color: #1a1a1a;
+}
+
