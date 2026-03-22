@@ -3,11 +3,16 @@ body{
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center; 
+    justify-content: flex-start; 
     align-items: center;     
     min-height: 100vh;
 
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("static/sfondo.jpg");
+    padding-left: 20%;     
+    padding-right: 20px; 
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("static/Sfondo_conferma.png");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
