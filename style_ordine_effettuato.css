@@ -14,7 +14,7 @@ body{
     padding-bottom: 20px;
     
     min-height: 100vh;
-    background-image: url('static/Sfondo_conferma.png'); 
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('static/Sfondo_conferma.png'); 
     background-repeat: no-repeat;
     background-position: right center; /* La faccia rimane a destra */
     background-attachment: fixed;
@@ -69,22 +69,25 @@ footer{
         /*justify-content: center;
         padding-left: 20px; */
 
-        padding: 30px 15px;
-        padding-left: 15px;
+        padding: 20px 15px;
         align-items: flex-start;
         height: auto;
         justify-content: center;
+        min-height: 100vh;
     }
 
-    DIV{
+    .container{
         width: 100%;
-        padding: 30px 20px;
+        padding: 40px 20px;
         margin: 0 auto;
-        margin-bottom: 40px;
     }
 
-    #invia{
+    #btn-assistenza, #btn-home{
+        display: block;
         width: 100%;
-        margin-bottom: 15px;
+        box-sizing: border-box;
+        text-align: center;
+        margin-top: 15px;
+        margin-bottom: 20px;
     }
 }
