@@ -15,7 +15,7 @@ BODY{
 
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("static/Sfondo_conferma.png");
     background-size: cover;
-    background-position: center;
+    background-position: right center;
     background-attachment: fixed;
 }
 
