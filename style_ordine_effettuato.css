@@ -31,13 +31,7 @@ body{
     color: #333; 
     box-sizing: border-box;/* Assicura che il padding non aumenti la larghezza totale del container */
 }
-/*per mobile*/
-@media (max-width: 768px) {
-    body {
-        justify-content: center;
-        padding-left: 20px; 
-    }
-}
+
  #btn-assistenza{
     padding: 10px 20px;
     background-color: #010c17;
@@ -67,4 +61,30 @@ footer{
     color: #333;
     font-size: 0.9rem;
     letter-spacing: 1px;
+}
+
+/*per mobile*/
+@media (max-width: 768px) {
+    body {
+        /*justify-content: center;
+        padding-left: 20px; */
+
+        padding: 30px 15px;
+        padding-left: 15px;
+        align-items: flex-start;
+        height: auto;
+        justify-content: center;
+    }
+
+    DIV{
+        width: 100%;
+        padding: 30px 20px;
+        margin: 0 auto;
+        margin-bottom: 40px;
+    }
+
+    #invia{
+        width: 100%;
+        margin-bottom: 15px;
+    }
 }
