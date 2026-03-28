@@ -1,20 +1,25 @@
 document.addEventListener('DOMContentLoaded', function(){
+    const form = document.getElementById('form_acquisto');
+    const nome = document.getElementById('nome_cognome');
+    const titolare = document.getElementById('titolare');
+    const indirizzo = document.getElementById('indirizzo'); 
     const carta = document.getElementById('numero_carta');
+    const scadenza = document.getElementById('scadenza');
     const cvv = document.getElementById('cvv');
     const btn_acq = document.getElementById('acquista');
 
-    if(carta && cvv && btn_acq){
+    if(form && carta && cvv && btn_acq){
         function controllaPagamento(){
             let soloNumeri = carta.value.replace(/\D/g, '');
 
             carta.value = soloNumeri.replace(/(.{4})/g, '$1 ').trim();
 
 
-            let cartaValida = (soloNumeri.length===16);
-            let cvvValido = (cvv.value.length===3 && !isNaN(cvv.value));
+            let cartaValida = (soloNumeri.length==16);
+            let cvvValido = (cvv.value.length==3 && !isNaN(cvv.value));
 
             //contro validità carta dal numero
-            if(carta.value==''){
+            if(soloNumeri==''){
                 carta.classList.remove('input-successo', 'input-errore');
             }
             else if(cartaValida){
@@ -40,9 +45,14 @@ document.addEventListener('DOMContentLoaded', function(){
                 cvv.classList.add('input-errore');
             }
 
+            
+            let nomeValido = nome.checkValidity();
+            let titolareValido = titolare.checkValidity();
+            let indirizzoValido = indirizzo.checkValidity();
+            let scadenzaValida = scadenza.checkValidity();
 
             //sblocco l'acquisto se entrambi rispettano il formato
-            if(cartaValida && cvvValido){
+            if(nomeValido && titolareValido && indirizzoValido && scadenzaValida && cartaValida && cvvValido){
                 btn_acq.disabled = false;
                 btn_acq.style.cursor = 'pointer';
                 btn_acq.style.opacity = '1';
@@ -54,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function(){
             }
         }
 
-        carta.addEventListener('input', controllaPagamento);
-        cvv.addEventListener('input', controllaPagamento);
+        form.addEventListener('input', controllaPagamento);
     }
 });
