@@ -100,6 +100,13 @@ input[type="email"]{
     transition: border-color 0.3s;
 }
 
+#messaggio{
+    color: #e74c3c;
+    font-size: 0.8rem;
+    margin-top: -15px;
+    margin-bottom: 15px;
+    display: none;
+}
 
 /*MEDIA QUERY*/
 @media (max-width: 768px){
