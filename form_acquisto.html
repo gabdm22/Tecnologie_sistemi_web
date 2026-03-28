@@ -5,6 +5,7 @@
         <META name="viewport" content="width=device-width, initial-scale=1.0">
         <LINK href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
         <LINK rel="stylesheet" href="style_form_acquisto.css" type="text/css">
+        <SCRIPT src="validazione_carta.js" defer></SCRIPT>
     </HEAD>
 
     <BODY>
@@ -25,7 +26,7 @@
                 <br><br>
 
                 <LABEL>Numero di carta: </LABEL>
-                <INPUT type="text" minlength="20" maxlength="20" id="numero_carta" name="numero_carta" placeholder="XXXX XXXX XXXX XXXX" required>
+                <INPUT type="text" pattern="[0-9]{16}" minlength="19" maxlength="19" id="numero_carta" name="numero_carta" placeholder="XXXX XXXX XXXX XXXX" required>
                 <br><br>
 
                 <LABEL>Scadenza: </LABEL>
