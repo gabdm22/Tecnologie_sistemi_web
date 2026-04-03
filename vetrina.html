@@ -6,6 +6,7 @@
         <LINK href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
         <LINK rel="stylesheet" href="style_vetrina.css">
         <SCRIPT src="scroll_vetrina.js" defer></SCRIPT>
+        <SCRIPT src="menu_vetrina_mobile.js" defer></SCRIPT>    <!--script per media query-->
     </HEAD>
 
     <BODY>
@@ -14,7 +15,10 @@
                 MoVA - Museum of Virtual Art
             </DIV>
 
-            <DIV class="menu">
+            <!--menù a tre linee espandibile (hamburger), visibile solo su dispositivo con width < 768px-->
+            <DIV class="hamburger" id="hamburger">☰</DIV>
+
+            <DIV class="menu" id="menu">
                 <A href="form_login.html">Accedi</A>
                 <A href="form_registrazione.html">Registrati</A>
                 <A href="form_upload.html">Vendi</A>
