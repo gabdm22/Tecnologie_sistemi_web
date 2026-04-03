@@ -18,6 +18,20 @@ body{
     background-color: #ffffff;
     padding: 20px 40px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+
+    /* regole per trasparenza */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.2s ease;
+}
+
+/* classe per lo scrolled, regolata da javascript */
+.navbar.scrolled{
+    padding: 10px 40px;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);    /*filtro della sfocatura di ciò che è sotto*/
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .navbar .logo{
