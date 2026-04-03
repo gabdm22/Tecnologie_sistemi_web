@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', function(){
 
     if(navbar){
         window.addEventListener('scroll', function(){
-            if(this.window.scrollY>50){
+            if(this.window.scrollY>60){
                 navbar.classList.add('scrolled');
             }
-            else{
+            else if(this.window.scrollY<=10){
                 navbar.classList.remove('scrolled');
             }
         });
