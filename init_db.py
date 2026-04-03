@@ -26,8 +26,7 @@ cursor.execute(
         categoria TEXT NOT NULL,
         dimensioni TEXT,
         venditore TEXT NOT NULL REFERENCES utente(id),
-        prezzo REAL NOT NULL,
-        flagDisp BOOLEAN NOT NULL
+        prezzo REAL NOT NULL
     )
     '''
 )
