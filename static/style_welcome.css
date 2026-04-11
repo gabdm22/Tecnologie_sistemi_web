@@ -7,7 +7,7 @@ body{
     align-items: center;     
     min-height: 100vh;
 
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.1) 100%), url("static/sfondo_welcome.jpg");
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.1) 100%), url("/static/sfondo_welcome.jpg");
     background-size: cover;
     background-position: right center;
     background-attachment: fixed;

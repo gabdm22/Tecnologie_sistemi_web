@@ -14,7 +14,7 @@ body{
     padding-bottom: 20px;
     
     min-height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('static/Sfondo_conferma.png'); 
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/static/Sfondo_conferma.png'); 
     background-repeat: no-repeat;
     background-position: right center; /* La faccia rimane a destra */
     background-attachment: fixed;

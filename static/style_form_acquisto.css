@@ -13,7 +13,7 @@ BODY{
     padding-top: 20px;
     padding-bottom: 20px;
 
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("static/Sfondo_conferma.png");
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/Sfondo_conferma.png");
     background-size: cover;
     background-position: right center;
     background-attachment: fixed;
@@ -54,11 +54,9 @@ label{
     color: #34495e;
 }
 
-
-/*CAMPI DEL FORM*/
 input[type="text"],
 input[type="number"],
-input[type="file"],
+input[type="month"],
 select{
     width: 100%;
     padding: 6px; 
@@ -68,29 +66,6 @@ select{
     box-sizing: border-box;
     font-size: 1rem;
     transition: border-color 0.3s;
-}
-
-input[type="file"]{
-    background-color: #f8f9fa;
-    color: #7f8c8d;
-    cursor: pointer;
-    padding: 6px;
-}
-
-input[type="file"]::file-selector-button{
-    background-color: #1a1a1a;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-right: 15px;
-    transition: background-color 0.3s;
-}
-
-input[type="file"]::file-selector-button:hover{
-    background-color: #333333;
 }
 
 input:focus, select:focus{
@@ -109,28 +84,17 @@ button{
     transition: all 0.3s;
 }
 
-#invia{
+#acquista{
     background-color: #1a1a1a;
     color: white;
     width: 60%;
-    border: 1px solid #1a1a1a
+    border: 1px solid #1a1a1a;
+    display: block;
+    margin: 0 auto;
 }
 
-#invia:hover{ 
+#acquista:hover{ 
     background-color: #333333;
-}
-
-#reset{
-    background-color: transparent;
-    color: #1a1a1a;
-    width: 35%;
-    float: right;
-    border: 1px solid #1a1a1a
-}
-
-#reset:hover{
-    background-color: #f2f2f2;
-    color: #2c3e50
 }
 
 footer {
@@ -139,11 +103,11 @@ footer {
     font-size: 0.8rem;
 }
 
-
 /*MEDIA QUERY*/
 @media (max-width: 768px){
     BODY{
-        padding: 10px 5px;
+        padding: 30px 15px;
+        padding-left: 15px;
         align-items: flex-start;
         height: auto;
         justify-content: center;
@@ -153,15 +117,11 @@ footer {
         width: 100%;
         padding: 30px 20px;
         margin: 0 auto;
+        margin-bottom: 40px;
     }
 
-    #invia{
+    #acquista{
         width: 100%;
         margin-bottom: 15px;
-    }
-
-    #reset{
-        width: 100%;
-        float: none;
     }
 }

@@ -13,7 +13,7 @@ BODY{
     padding-top: 20px;
     padding-bottom: 20px;
 
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("static/Sfondo_conferma.png");
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/Sfondo_conferma.png");
     background-size: cover;
     background-position: right center;
     background-attachment: fixed;
