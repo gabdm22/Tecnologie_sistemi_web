@@ -1,6 +1,8 @@
 from flask import Flask, request, render_template, redirect, session
 import sqlite3
 import os
+import from werkzeug.security import generate_password_hash
+
 
 app = Flask(__name__)
 
@@ -60,10 +62,37 @@ def carica_opera():
         return redirect("/vetrina.html")
     else:
         return "ERRORE! nessuna immagine ricevuta"
+# -----------------------------------------------------------------------
 
+# pagina registrazione
+@app.route('/form_registrazione.html')
+def registra():
+    return render_template("form_registrazione.html")
 
+# registrazione
+@app.route('/registrazione', methods=["POST"])
+def registazione():
+    nome = request.form["nome"]
+    cognome = request.form["cognome"]
+    email = request.form["email"]
+    password = request.form["password"]
+    verifica_password = request.form["verifica_password"]
+    if not all([nome, cognome, email, password, verifica_password]):
+        return "ERRORE! tutti i campi sono obbligatori",400
+    if password != verifica_password:
+        return "ERRORE! le password non coincidono",400
+    if len(password) < 8:
+        return "ERRORE! la password deve essere lunga almeno 8 caratteri",400
+    if not (any(c.isupper() for c in password) and any(c.islower() for c in password) and any(c.isdigit() for c in password)):
+        return "ERRORE! la password deve contenere almeno una lettera maiuscola, una lettera minuscola e un numero",400
+    
+    password_hash = generate_password_hash(password)
+    conn = get_connection_db()
+    conn.execute("INSERT INTO utente (nome, cognome, email, password) VALUES (?, ?, ?, ?)", (nome, cognome, email, password_hash))
+    conn.commit()
+    conn.close()
 
-
+    return redirect("/form_login.html")
 
 
 
