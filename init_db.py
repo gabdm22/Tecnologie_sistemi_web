@@ -37,10 +37,9 @@ cursor.execute('''
         nome TEXT NOT NULL,
         categoria TEXT NOT NULL,
         dimensioni TEXT,
-        id_venditore INTEGER NOT NULL,
         prezzo REAL NOT NULL,
         disponibilita INTEGER NOT NULL DEFAULT 1,
-        FOREIGN KEY (id_venditore) REFERENCES utente(id_utente)
+        immagine TEXT NOT NULL
     )
 ''')
 

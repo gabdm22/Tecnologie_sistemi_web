@@ -10,3 +10,6 @@ __pycache__/
 #ignora ambienti virtuali
 .venv/
 venv/
+
+#ignora i file degli utenti ma mantiene la struttura
+static/uploads

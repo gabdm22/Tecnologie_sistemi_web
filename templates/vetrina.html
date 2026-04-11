@@ -27,50 +27,33 @@
         </NAV>
 
         <MAIN class="vetrina">              <!--VETRINA-->
+            {% for op in opere %}
             <ARTICLE class="riga_opera">    <!--Box contenente dati di entità "opera" e immagine-->
                 <DIV class="info_opera">
-                    <H2 class="nome_opera">La Gioconda</H2>
-                    <P class="prezzo"><b>Prezzo:</b> 1500.00€</P>
+                    <H2 class="nome_opera">{{op['nome']}}</H2>
+                    <P class="prezzo"><b>Prezzo:</b> {{op['prezzo']}}€</P>
                     <P class="dettaglio"><b>Autore: </b>Leonardo da Vinci</P>
-                    <P class="dettaglio"><b>Categoria: </b>pittura</P>
-                    <P class="dettaglio"><b>Dimensioni: </b>77x53 cm</P>
-                    <P class="flag_disponibilita disponibile">Disponibile</P>
-                    <A href="form_acquisto.html"><BUTTON class="button_acquista">Acquista</BUTTON></A>
-                </DIV>
-                <DIV class="immagine_opera">
-                    <IMG src="/static/gioconda.jpg">
-                </DIV>
-            </ARTICLE>
+                    <P class="dettaglio"><b>Categoria: </b>{{op['categoria']}}</P>
 
-            <ARTICLE class="riga_opera">
-                <DIV class="info_opera">
-                    <H2 class="nome_opera">Notte stellata</H2>
-                    <P class="prezzo"><b>Prezzo:</b> 1000.00€</P>
-                    <P class="dettaglio"><b>Autore: </b>Vincent Van Gogh</P>
-                    <P class="dettaglio"><b>Categoria: </b>pittura</P>
-                    <P class="dettaglio"><b>Dimensioni: </b>73,7x92,1 cm</P>
-                    <P class="flag_disponibilita disponibile">Disponibile</P>
-                    <A href="form_acquisto.html"><BUTTON class="button_acquista">Acquista</BUTTON></A>
+                    {% if op['dimensioni'] == None %}
+                    <P class="dettaglio"><b>Dimensioni: </b>non specificate</P>
+                    {% else %}
+                    <P class="dettaglio"><b>Dimensioni: </b>{{op['dimensioni']}}</P>
+                    {% endif %}
+                    
+                    {% if op['disponibilita']%}
+                        <P class="flag_disponibilita disponibile">Disponibile</P>
+                        <A href="form_acquisto.html"><BUTTON class="button_acquista">Acquista</BUTTON></A>
+                    {% else %}
+                        <P class="flag_disponibilita non_disponibile">Non disponibile</P>
+                        <A href="form_acquisto.html"><BUTTON class="button_acquista" disabled>Acquista</BUTTON></A>
+                    {% endif %}
                 </DIV>
                 <DIV class="immagine_opera">
-                    <IMG src="/static/notte_stellata.webp">
+                    <IMG src="/static/uploads/{{op['immagine']}}" alt="{{op['nome']}}">
                 </DIV>
             </ARTICLE>
-
-            <ARTICLE class="riga_opera">
-                <DIV class="info_opera">
-                    <H2 class="nome_opera">Mr. Simpatia</H2>
-                    <P class="prezzo"><b>Prezzo:</b> 40.00€</P>
-                    <P class="dettaglio"><b>Autore: </b>Fabri Fibra</P>
-                    <P class="dettaglio"><b>Categoria: </b>musica</P>
-                    <P class="dettaglio"><b>Dimensioni: </b>non specificato</P>
-                    <P class="flag_disponibilita non_disponibile">Non disponibile</P>
-                    <A href="form_acquisto.html"><BUTTON class="button_acquista disabilitato" disabled>Acquista</BUTTON></A>
-                </DIV>
-                <DIV class="immagine_opera">
-                    <IMG src="/static/mr_simpatia.jpg">
-                </DIV>
-            </ARTICLE>
+            {% endfor %}
         </MAIN>
 
         <FOOTER>        <!--Piè di pagina per copyright e firma-->
