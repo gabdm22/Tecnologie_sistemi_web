@@ -97,6 +97,12 @@ button{
     background-color: #333333;
 }
 
+footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
 /*MEDIA QUERY*/
 @media (max-width: 768px){
     BODY{
