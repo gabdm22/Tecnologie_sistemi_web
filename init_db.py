@@ -8,8 +8,7 @@ cursor.execute("PRAGMA foreign_keys = ON;")
 # 1. UTENTE
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS utente(
-        id_utente INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT UNIQUE NOT NULL,
+        username TEXT PRIMARY KEY,
         nome TEXT NOT NULL,
         cognome TEXT NOT NULL,
         email TEXT UNIQUE NOT NULL,

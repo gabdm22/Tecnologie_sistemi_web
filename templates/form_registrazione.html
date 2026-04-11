@@ -12,17 +12,19 @@
     <div class="registrazione-conteiner">
         <div class="FORM">              <!--Inserisce dati in entità "utente"-->
             <h1 id = "titolo-registrazione">REGISTRAZIONE</h1>
-            <form action="/register" method="post">
+            <form action="/registrazione" method="post">
                 <label for="Nome">Nome:</label>
                 <input type="text" id="Nome" name="nome">
                 <label for="Cognome">Cognome:</label>
                 <input type="text" id="Cognome" name="cognome">
+                <label for="username">Username:</label>
+                <input type="text" id="Username" name="username">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email">
                 <label for="password">Password:</label>
                 <input type="password" id="pass1" name="password">
                 <label for="confirm_password">Verifica Password:</label>
-                <input type="password" id="pass2" name="confirm_password">
+                <input type="password" id="pass2" name="verifica_password">
                 <DIV id="messaggio" name="messaggio">Le password non corrispondono!</DIV>
                 <button id = "registrazione-btn" type="submit">Registrati</button>
             </form>
