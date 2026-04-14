@@ -148,4 +148,13 @@ footer {
         width: 100%;
         margin-bottom: 15px;
     }
+
+    .successo-titolo{
+        font-size: 1.1rem;
+    }
+
+    .successo-testo{
+        font-size: 0.90rem;
+        margin-bottom: 20px;
+    }
 }
