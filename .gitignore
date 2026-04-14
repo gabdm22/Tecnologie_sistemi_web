@@ -13,3 +13,6 @@ venv/
 
 #ignora i file degli utenti ma mantiene la struttura
 static/uploads
+
+#ignora la cartella .vscode
+.vscode/

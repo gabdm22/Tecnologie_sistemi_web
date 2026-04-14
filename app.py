@@ -112,7 +112,20 @@ def registazione():
 
 
 
+# pagina assistenza
+@app.route('/form_assistenza.html', methods=['GET', 'POST'])
+def assistenza():
+    if request.method == 'POST':
+        oggetto = request.form['oggetto']
+        mess = request.form['messaggio']
 
+        print('-- Ricevuta nuova richiesta assistenza --')
+        print(f'Oggetto: {oggetto}')
+        print(f'Messaggio: {mess}')
+
+        return render_template("form_assistenza.html", inviato=True)
+
+    return render_template("form_assistenza.html", inviato=False)
 
 
 if __name__=="__main__":

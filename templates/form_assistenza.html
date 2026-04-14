@@ -9,19 +9,31 @@
     <BODY>
         <DIV>
             <H1 name="titolo" id="titolo">Contatta assistenza</H1>
-            <H3 name="sottotitolo" id="sottotitolo">Spiega il tuo problema</H3>
-            <FORM>
-                <LABEL>Oggetto: </LABEL>
-                <INPUT type="text" name="oggetto" id="oggetto" required>
-                <br><br>
-                
-                <LABEL>Testo: </LABEL>
-                <TEXTAREA name="messaggio" id="messaggio" rows="6" cols="40" placeholder="Scrivi qui il tuo messaggio..."></TEXTAREA>
-                <br><br>
 
-                <BUTTON type="submit" name="invia" id="invia">Invia</BUTTON>
-            </FORM>
+            {% if inviato %}
+                <H3 class="successo-titolo">Messaggio inviato con successo!</H3>
+                <P class="successo-testo">
+                    Abbiamo ricevuto la tua richiesta.<br>Il nostro team ti risponderà al più presto!
+                </P>
+                <A href="/vetrina.html" class="link-home">
+                    <BUTTON id="invia">Torna alla vetrina</BUTTON>
+                </A>
 
+            {% else %}
+                <H3 name="sottotitolo" id="sottotitolo">Spiega il tuo problema</H3>
+                <FORM action="/form_assistenza.html" method="POST">
+                    <LABEL>Oggetto: </LABEL>
+                    <INPUT type="text" name="oggetto" id="oggetto" required>
+                    <br><br>
+                    
+                    <LABEL>Testo: </LABEL>
+                    <TEXTAREA name="messaggio" id="messaggio" rows="6" cols="40" placeholder="Scrivi qui il tuo messaggio..."></TEXTAREA>
+                    <br><br>
+
+                    <BUTTON type="submit" name="invia" id="invia">Invia</BUTTON>
+                </FORM>
+            {% endif %}
+            
             <FOOTER>
                 <P>&copy;2026 MoVA - Museum of Virtual Art. Created by Nicolò Carbone and Gabriele Di Martino</P>
             </FOOTER>

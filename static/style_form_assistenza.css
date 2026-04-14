@@ -54,6 +54,25 @@ label{
     color: #34495e;
 }
 
+.successo-titolo{
+    text-align: center;
+    color: #1a1a1a;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.successo-testo{
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.link-home{
+    text-decoration: none;
+}
 
 /*CAMPI DEL FORM*/
 input[type="text"],
