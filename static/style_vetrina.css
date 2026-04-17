@@ -79,6 +79,33 @@ body{
 .navbar.scrolled .hamburger{
     font-size: 1.6rem;
 }
+
+/*-----------------------------------------------------------------------*/
+
+/* BARRA DI RICERCA*/
+.contenitore-ricerca{
+    text-align: center;
+    padding: 30px 20px 10px 20px;
+}
+
+#barra-ricerca{
+    width: 80%;
+    max-width: 600px;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-family: inherit;
+    border: 2px solid #ccd1d9;
+    border-radius: 30px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+#barra-ricerca:focus{
+    border-color: #1a1a1a;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
 /*-----------------------------------------------------------------------*/
 
 
@@ -196,6 +223,7 @@ footer{
     letter-spacing: 1px;
 }
 
+/*-----------------------------------------------------------------------*/
 
 /*  EFFETTO LIGHTBOX (zoom immagini)    */
 .immagine_opera img{
@@ -247,7 +275,7 @@ footer{
 }
 
 
-
+/*-----------------------------------------------------------------------*/
 
 /*MEDIA QUERY*/
 @media (max-width: 768px){

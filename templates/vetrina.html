@@ -5,9 +5,10 @@
         <META name="viewport" content="width=device-width, initial-scale=1.0">
         <LINK href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
         <LINK rel="stylesheet" href="/static/style_vetrina.css">
-        <SCRIPT src="/static/scroll_vetrina.js" defer></SCRIPT>
-        <SCRIPT src="/static/menu_vetrina_mobile.js" defer></SCRIPT>    <!--script per media query-->
-        <SCRIPT src="/static/lightbox.js" defer></SCRIPT>
+        <SCRIPT src="/static/scroll_vetrina.js" defer></SCRIPT>     <!--script per scroll vetrina-->
+        <SCRIPT src="/static/menu_vetrina_mobile.js" defer></SCRIPT>    <!--script per menù su mobile-->
+        <SCRIPT src="/static/lightbox.js" defer></SCRIPT>      <!--script per zoom immagine-->
+        <SCRIPT src="/static/ricerca.js" defer></SCRIPT>     <!--script per barra ricerca-->
     </HEAD>
 
     <BODY>
@@ -27,6 +28,10 @@
             </DIV>
         </NAV>
 
+        <DIV class="contenitore-ricerca">   <!--barra di ricerca opere-->
+            <INPUT id="barra-ricerca" type="text" placeholder="Cerca...">
+        </DIV>
+
         <MAIN class="vetrina">              <!--VETRINA-->
             {% for op in opere %}
             <ARTICLE class="riga_opera">    <!--Box contenente dati di entità "opera" e immagine-->
@@ -36,7 +41,7 @@
                     <P class="dettaglio"><b>Autore: </b>Leonardo da Vinci</P>
                     <P class="dettaglio"><b>Categoria: </b>{{op['categoria']}}</P>
 
-                    {% if op['dimensioni'] == None %}
+                    {% if op['dimensioni'] == None or op['dimensioni'] == '' %}
                     <P class="dettaglio"><b>Dimensioni: </b>non specificate</P>
                     {% else %}
                     <P class="dettaglio"><b>Dimensioni: </b>{{op['dimensioni']}}</P>
