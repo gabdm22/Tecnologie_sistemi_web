@@ -37,7 +37,7 @@
             <ARTICLE class="riga_opera">    <!--Box contenente dati di entità "opera" e immagine-->
                 <DIV class="info_opera">
                     <H2 class="nome_opera">{{op['nome']}}</H2>
-                    <P class="prezzo"><b>Prezzo:</b> {{op['prezzo']}}€</P>
+                    <P class="prezzo"><b>Prezzo:</b> {{"%.2f"|format(op['prezzo'])}}€</P>
                     <P class="dettaglio"><b>Autore: </b>Leonardo da Vinci</P>
                     <P class="dettaglio"><b>Categoria: </b>{{op['categoria']}}</P>
 

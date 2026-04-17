@@ -176,6 +176,26 @@ button{
     color: #2c3e50
 }
 
+.messaggio-errore{
+    color: #e74c3c;
+    font-size: 0.8rem;
+    display: none;
+    margin-top: -15px;
+    margin-bottom: 15px;
+}
+
+.messaggio-errore.attivo{
+    display: block;
+}
+
+.input-invalido{
+    border-color: #e74c4c !important;
+}
+
+.input-valido{
+    border-color: #1a1a1a !important;
+}
+
 footer {
     margin-top: 20px;
     text-align: center;
