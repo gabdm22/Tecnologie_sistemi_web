@@ -35,9 +35,9 @@ def mostra_vetrina():
 # -----------------------------------------------------------------------
 
 # pagina vendita
-@app.route('/form_upload.html')
+@app.route('/form_vendita.html')
 def vendi():
-    return render_template("form_upload.html")
+    return render_template("form_vendita.html")
 
 
 # upload
