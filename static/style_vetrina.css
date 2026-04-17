@@ -197,6 +197,58 @@ footer{
 }
 
 
+/*  EFFETTO LIGHTBOX (zoom immagini)    */
+.immagine_opera img{
+    cursor: zoom-in;    /*trasforma il cursore in lente di ingrandimento quando passa sull'immagine*/
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.lightbox{
+    display: none;  /*inizialmente invisibile, regolato da script*/
+    position: fixed;
+    z-index: 9999;  /*va sempre in primo piano su tutto*/
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.85);  /*sfondo nero, opaco all'85%*/
+}
+
+.lightbox-img{
+    max-width: 90%;
+    max-height: 85%;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    animation: zoom 0.3s ease-out;  /*apertura fluida*/
+}
+
+.chiudi-lightbox{
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: #f1f1f1;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.chiudi-lightbox:hover{
+    color: #a0a0a0;
+}
+
+@keyframes zoom {      /*animazione css*/
+    from {transform: scale(0.8); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+
+
+
+
 /*MEDIA QUERY*/
 @media (max-width: 768px){
     .navbar{

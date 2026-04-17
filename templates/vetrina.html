@@ -7,6 +7,7 @@
         <LINK rel="stylesheet" href="/static/style_vetrina.css">
         <SCRIPT src="/static/scroll_vetrina.js" defer></SCRIPT>
         <SCRIPT src="/static/menu_vetrina_mobile.js" defer></SCRIPT>    <!--script per media query-->
+        <SCRIPT src="/static/lightbox.js" defer></SCRIPT>
     </HEAD>
 
     <BODY>
@@ -59,5 +60,11 @@
         <FOOTER>        <!--Piè di pagina per copyright e firma-->
             <P>&copy;2026 MoVA - Museum of Virtual Art. Created by Nicolò Carbone and Gabriele Di Martino</P>
         </FOOTER>
+
+
+        <DIV id="lightbox" class="lightbox">    <!--va in sovrimpressione, oscura tutto per focus sull'immagine-->
+            <SPAN class="chiudi-lightbox">&times;</SPAN>
+            <IMG id="lightbox-img" class="lightbox-img" src="">
+        </DIV>
     </BODY>
 </HTML>
