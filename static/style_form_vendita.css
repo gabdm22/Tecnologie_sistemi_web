@@ -250,4 +250,23 @@ footer {
         width: 100%;
         float: none;
     }
+
+    .contenitore-link{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .link-successo{
+        margin: 0;
+        font-size: 1.1rem;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 6px;
+    }
+
+    .separatore{
+        display: none;
+    }
 }
