@@ -6,6 +6,7 @@
         <LINK href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
         <LINK rel="stylesheet" href="/static/style_form_vendita.css" type="text/css">
         <SCRIPT src="/static/controllo_prezzo.js" defer></SCRIPT>
+        <SCRIPT src="/static/anteprima_immagine.js" defer></SCRIPT>
     </HEAD>
 
     <BODY>
@@ -53,6 +54,9 @@
 
                 <LABEL>Immagine: </LABEL>
                 <INPUT id="file" name="immagine" type="file" accept="image/jpg, image/jpeg, image/png" value="Carica immagine" required>
+                <DIV id="contenitore-anteprima" class="contenitore-anteprima">
+                    <IMG id="immagine-anteprima" class="immagine-anteprima" src="" alt="anteprima opera">
+                </DIV>
                 <br><br>
 
                 <BUTTON id="invia" type="submit">Invia</BUTTON>
