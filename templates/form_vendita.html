@@ -10,6 +10,21 @@
     <BODY>
         <DIV>
             <H1 id="titolo">Vendi</H1>
+            
+            {% if caricato %}
+            <H3 class="successo-titolo">Opera caricata con successo!</H3>
+            <P class="successo-testo">
+                La tua opera è ora visibile in vetrina.<br>
+            </P>
+            
+            <P class="contenitore-link">
+                <A href="/vetrina.html" class="link-successo">Torna alla vetrina</A>
+                <SPAN class="separatore">|</SPAN>
+                <A href="/form_vendita.html" class="link-successo">Vendi ancora</A>
+            </P>
+
+            {% else %}
+            
             <H3 id="sottotitolo">Carica qui la tua opera</H3>
             <FORM id="form" action="/upload" method="POST" name="form" enctype="multipart/form-data">   <!--Inserisce dati in entità "opera"-->
                 <LABEL>Nome opera: </LABEL>
@@ -41,6 +56,8 @@
                 <BUTTON id="invia" type="submit">Invia</BUTTON>
                 <BUTTON id="reset" type="reset">Reset</BUTTON>
             </FORM>
+            
+            {% endif %}
 
             <FOOTER>
                 <P>&copy;2026 MoVA - Museum of Virtual Art. Created by Nicolò Carbone and Gabriele Di Martino</P>

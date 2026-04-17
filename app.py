@@ -59,9 +59,9 @@ def carica_opera():
         conn.commit()
         conn.close()
 
-        return redirect("/vetrina.html")
+        return render_template("/form_vendita.html", caricato=True)
     else:
-        return "ERRORE! nessuna immagine ricevuta"
+        return render_template("/form_vendita.html", caricato=False)
 # -----------------------------------------------------------------------
 
 # pagina registrazione
