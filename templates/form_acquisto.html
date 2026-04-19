@@ -10,35 +10,44 @@
 
     <BODY>
         <DIV>
-            <H1 id="titolo">Acquista</H1>
-            <H3 id="sottotitolo">Inserisci i dati per completare l'acquisto</H3>
-            <FORM id="form_acquisto" method="post" name="form">
-                <LABEL>Nome e cognome: </LABEL>
-                <INPUT type="text" minlength="4" maxlength="30" id="nome_cognome" name="nome_cognome" required>
-                <br><br>
+            {% if acquistato %}
+                <H1 id="titolo" class="successo-titolo">Acquisto effettuato con successo!</H1>
+                <H3 id="sottotitolo" class="successo-testo">La tua opera sarà spedita il prima possibile</H3>
 
-                <LABEL>Indirizzo: </LABEL>
-                <INPUT type="text" minlength="5" maxlength="40" id="indirizzo" name="indirizzo" required>
-                <br><br>
-                
-                <LABEL>Titolare carta: </LABEL>
-                <INPUT type="text" minlength="5" maxlength="40" id="titolare" name="titolare" required>
-                <br><br>
+                <P class="contenitore-link">
+                    <A href="/vetrina.html" class="link-successo">Torna alla vetrina</A>
+                </P>
+            {% else %}
+                <H1 id="titolo">Acquista</H1>
+                <H3 id="sottotitolo">Inserisci i dati per completare l'acquisto</H3>
+                <FORM id="form_acquisto" method="post" name="form">
+                    <LABEL>Nome e cognome: </LABEL>
+                    <INPUT type="text" minlength="4" maxlength="30" id="nome_cognome" name="nome_cognome" required>
+                    <br><br>
 
-                <LABEL>Numero di carta: </LABEL>
-                <INPUT type="text" pattern="[0-9]{16}" minlength="19" maxlength="19" id="numero_carta" name="numero_carta" placeholder="XXXX XXXX XXXX XXXX" required>
-                <br><br>
+                    <LABEL>Indirizzo: </LABEL>
+                    <INPUT type="text" minlength="5" maxlength="40" id="indirizzo" name="indirizzo" required>
+                    <br><br>
+                    
+                    <LABEL>Titolare carta: </LABEL>
+                    <INPUT type="text" minlength="5" maxlength="40" id="titolare" name="titolare" required>
+                    <br><br>
 
-                <LABEL>Scadenza: </LABEL>
-                <INPUT type="month" id="scadenza" name="scadenza" required>
-                <br><br>
+                    <LABEL>Numero di carta: </LABEL>
+                    <INPUT type="text" pattern="[0-9]{16}" minlength="19" maxlength="19" id="numero_carta" name="numero_carta" placeholder="XXXX XXXX XXXX XXXX" required>
+                    <br><br>
 
-                <LABEL>CVV: </LABEL>
-                <INPUT type="text" pattern="[0-9]{3}" maxlength="3" id="cvv" name="cvv" placeholder="XXX" required>
-                <br><br>
+                    <LABEL>Scadenza: </LABEL>
+                    <INPUT type="month" id="scadenza" name="scadenza" required>
+                    <br><br>
 
-                <BUTTON id="acquista" type="submit">Acquista</BUTTON>
-            </FORM>
+                    <LABEL>CVV: </LABEL>
+                    <INPUT type="text" pattern="[0-9]{3}" maxlength="3" id="cvv" name="cvv" placeholder="XXX" required>
+                    <br><br>
+
+                    <BUTTON id="acquista" type="submit">Acquista</BUTTON>
+                </FORM>
+            {% endif %}
 
             <FOOTER>
                 <P>&copy;2026 MoVA - Museum of Virtual Art. Created by Nicolò Carbone and Gabriele Di Martino</P>

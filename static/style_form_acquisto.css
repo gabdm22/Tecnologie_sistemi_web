@@ -97,6 +97,51 @@ button{
     background-color: #333333;
 }
 
+
+
+/*   CARICAMENTO BOTTONE ACQUISTO   */
+.btn-in-elaborazione{
+    background-color: #555555;
+    cursor: not-allowed !important;
+    opacity: 0.8;
+}
+
+/* ---------------------------------------------------- */
+
+.successo-titolo{
+    text-align: center;
+    color: #1a1a1a;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.successo-testo{
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 0.95rem;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.link-successo{
+    color: #1a1a1a;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1rem;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+.link-successo:hover{
+    color: #7f8c8d;
+}
+
+
 footer {
     margin-top: 20px;
     text-align: center;

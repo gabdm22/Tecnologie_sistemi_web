@@ -68,7 +68,7 @@ def carica_opera():
 # pagina acquisto
 @app.route('/form_acquisto.html')
 def mostra_pag_acquisto():
-    return render_template("/form_acquisto.html")
+    return render_template("/form_acquisto.html", acquistato=False)
 
 
 

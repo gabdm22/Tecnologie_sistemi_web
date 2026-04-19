@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function(){
         function controllaPagamento(){
             let soloNumeri = carta.value.replace(/\D/g, '');
 
-            carta.value = soloNumeri.replace(/(.{4})/g, '$1 ').trim();
+            carta.value = soloNumeri.replace(/(.{4})/g, '$1 ').trim();  // inserisce spaziatura ogni 4 caratteri
 
 
             let cartaValida = (soloNumeri.length==16);
