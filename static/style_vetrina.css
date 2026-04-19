@@ -89,6 +89,7 @@ body{
 }
 
 #barra-ricerca{
+    flex-grow: 1;   /* si espande automaticamente */
     width: 80%;
     max-width: 600px;
     padding: 12px 20px;
@@ -102,6 +103,26 @@ body{
 }
 
 #barra-ricerca:focus{
+    border-color: #1a1a1a;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tendina-categoria{
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 2px solid #ccd1d9;
+    border-radius: 30px;
+    outline: none;
+    cursor: pointer;
+    background-color: #ffffff;
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    max-width: 200px;
+}
+
+.tendina-categoria:focus{
     border-color: #1a1a1a;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
