@@ -342,6 +342,17 @@ footer{
         text-align: center;
     }
 
+
+    .contenitore-ricerca{
+        flex-direction: column;
+        padding: 20px 10px;
+    }
+
+    #barra-ricerca, .filtro-categoria{
+        width: 100%;
+        box-sizing: border-box;
+    }
+
     /*------------------------------------------------*/
 
     .vetrina{
