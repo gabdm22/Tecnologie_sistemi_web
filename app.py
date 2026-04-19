@@ -62,6 +62,18 @@ def carica_opera():
         return render_template("/form_vendita.html", caricato=True)
     else:
         return render_template("/form_vendita.html", caricato=False)
+
+# -----------------------------------------------------------------------
+
+# pagina acquisto
+@app.route('/form_acquisto.html')
+def mostra_pag_acquisto():
+    return render_template("/form_acquisto.html")
+
+
+
+
+
 # -----------------------------------------------------------------------
 
 # pagina registrazione
