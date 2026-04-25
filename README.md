@@ -18,17 +18,17 @@ Per la realizzazione del database è stato utilizzato sqlite:
 <br><br>
 
 **SETUP**
-1. Requisiti
-Assicurati di aver installato la libreria Flask di Python digitando su terminale:<br>
+1. <b>Requisiti:</b><br>
+assicurati di aver installato la libreria Flask di Python digitando su terminale:<br>
 ```bash
 	pip install flask
 ```
 
-2. Inizializzazione del database
-Esegui il programma init_db.py presente nella cartella del progetto per creare il file "mova_db.db", databse del progetto.
+2. <b>Inizializzazione del database:</b><br>
+esegui il programma init_db.py presente nella cartella del progetto per creare il file "mova_db.db", databse del progetto.
 
-3. Avvia il server
-Esegui il programma app.py per avviare il server del progetto. Il sito sarà visibile in locale al link:
+3. <b>Avvia il server:</b><br>
+esegui il programma app.py per avviare il server del progetto. Il sito sarà visibile in locale al link:
 	http://127.0.0.1:5000
 
 <br><br>
