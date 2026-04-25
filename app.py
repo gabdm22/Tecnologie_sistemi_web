@@ -1,7 +1,7 @@
-from flask import Flask, request, render_template, redirect, session
+from flask import Flask, jsonify, request, render_template, redirect, session
 import sqlite3
 import os
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 app = Flask(__name__)
@@ -126,9 +126,10 @@ def effettua_login():
     conn.close()
     if utente and check_password_hash(utente['password'],password):
         session[username] = utente['id']
-        return redirect("/vetrina.html")
+        return jsonify({"success": True, "redirect": "/vetrina.html"}), 200
     else:
-        return "ERRORE! username o password errati",400
+        return jsonify({"success": False, "message": "username o password errati"}), 401
+
             
 
  

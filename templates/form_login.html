@@ -10,13 +10,17 @@
     <div class="login-container">
         
         <div class="FORM">          
-            <h1 id = "titolo-login">LOGIN</h1>
-            <form action="/login" method="post">
+            <h1 id="titolo-login">LOGIN</h1> 
+             <div id="error-box" class="alert-error" style="display: none; color: red; margin-bottom: 10px; font-weight: bold;"></div>
+
+            <form id="login-form">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username">
+                <input type="text" id="username" name="username" required>
+
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password">
-                <button id = "login-btn" type="submit">Login</button>
+                <input type="password" id="password" name="password" required>
+
+                <button id="login-btn" type="submit">Login</button>
             </form>
 
             <div class="register-link"> 
@@ -26,9 +30,11 @@
         </div>
 
         <footer>
-            <P>&copy;2026 MoVA - Museum of Virtual Art. Created by Nicolò Carbone and Gabriele Di Martino</P>
+            <p>&copy;2026 MoVA - Museum of Virtual Art. Created by Nicolò Carbone and Gabriele Di Martino</p>
         </footer>
 
     </div>
+
+    <script src="/static/controllo_utente.js"></script>
 </body>
 </html>
