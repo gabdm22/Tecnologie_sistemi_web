@@ -111,6 +111,27 @@ def registazione():
     conn.commit()
     conn.close()
     return redirect("/vetrina.html")
+# -----------------------------------------------------------------------
+#pagina login
+@app.route("/form_login.html")
+def login():
+    return render_template("form_login.html")
+#login 
+@app.route("/login", methods=["POST"])
+def effettua_login():
+    username = request.form["username"]
+    password = request.form["password"]
+    conn = get_connection_db()
+    utente = conn.execute("SELECT * FROM utente WHERE username = ?", (username,)).fetchone()
+    conn.close()
+    if utente and check_password_hash(utente['password'],password):
+        session[username] = utente['id']
+        return redirect("/vetrina.html")
+    else:
+        return "ERRORE! username o password errati",400
+            
+
+ 
 
 
 
