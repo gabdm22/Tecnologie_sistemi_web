@@ -21,10 +21,18 @@
             <DIV class="hamburger" id="hamburger">☰</DIV>
 
             <DIV class="menu" id="menu">
-                <A href="form_login.html">Accedi</A>
-                <A href="form_registrazione.html">Registrati</A>
-                <A href="form_vendita.html">Vendi</A>
-                <A href="form_assistenza.html">Assistenza</A>
+                {% if 'username' in session %}    
+                    <A href="#" class="user">Ciao, <b>{{session['username']}}</b>!</A>
+                    <A href="form_vendita.html">Vendi</A>
+                    <A href="form_assistenza.html">Assistenza</A>
+                    <A href="/logout">Logout</A>
+                {% else %}
+                    <A href="form_login.html">Accedi</A>
+                    <A href="form_registrazione.html">Registrati</A>
+                    <A href="form_vendita.html">Vendi</A>
+                    <A href="form_assistenza.html">Assistenza</A>
+            
+                {% endif %}
             </DIV>
         </NAV>
 

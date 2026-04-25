@@ -128,7 +128,7 @@ def effettua_login():
     conn.close()
     if utente and check_password_hash(utente['password'],password):
         # session['utente_id'] = utente['id']
-        session[username] = utente['username']
+        session['username'] = utente['username']
         return jsonify({"success": True, "redirect": "/vetrina.html"}), 200
     else:
         return jsonify({"success": False, "message": "username o password errati"}), 401
