@@ -28,7 +28,7 @@ Assicurati di aver installato la libreria Flask di Python digitando su terminale
 Esegui il programma init_db.py presente nella cartella del progetto per creare il file "mova_db.db", databse del progetto.
 
 3. Avvia il server
-Esegui il programma app.py per avviare il server del progetto. Il sito sarà visibile al link:
+Esegui il programma app.py per avviare il server del progetto. Il sito sarà visibile in locale al link:
 	http://127.0.0.1:5000
 
 <br><br>
