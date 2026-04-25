@@ -6,6 +6,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 
+app.secret_key = 'secret_key_mova'
+
 os.makedirs("static/uploads", exist_ok=True)
 
 def get_connection_db():
@@ -125,7 +127,8 @@ def effettua_login():
     utente = conn.execute("SELECT * FROM utente WHERE username = ?", (username,)).fetchone()
     conn.close()
     if utente and check_password_hash(utente['password'],password):
-        session[username] = utente['id']
+        # session['utente_id'] = utente['id']
+        session[username] = utente['username']
         return jsonify({"success": True, "redirect": "/vetrina.html"}), 200
     else:
         return jsonify({"success": False, "message": "username o password errati"}), 401
