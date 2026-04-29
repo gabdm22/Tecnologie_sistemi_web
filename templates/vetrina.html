@@ -69,9 +69,11 @@
                     {% if op['disponibilita']%}
                         <P class="flag_disponibilita disponibile">Disponibile</P>
                         <A href="form_acquisto.html?id_opera={{ op['id'] }}"><BUTTON class="button_acquista">Acquista</BUTTON></A>
+                        <A href="/aggiungi_al_carrello"><BUTTON class="button_acquista">Aggiungi al carrello</BUTTON></A>
                     {% else %}
                         <P class="flag_disponibilita non_disponibile">Non disponibile</P>
                         <A href="form_acquisto.html?id_opera={{ op['id'] }}"><BUTTON class="button_acquista" disabled>Acquista</BUTTON></A>
+                        <A href="/aggiungi_al_carrello"><BUTTON class="button_acquista">Aggiungi al carrello</BUTTON></A>
                     {% endif %}
                 </DIV>
                 <DIV class="immagine_opera">
