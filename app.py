@@ -184,6 +184,11 @@ def registazione():
     if utente_esistente:
         conn.close()
         return "ERRORE! username già esistente",400
+    # Controlla se l'email esiste già
+    email_esistente = conn.execute("SELECT * FROM utente WHERE email = ?", (email,)).fetchone()
+    if email_esistente:
+        conn.close()
+        return "ERRORE! email già esistente",400
     #genera hash della password e salva utente
     password_hash = generate_password_hash(password)
     conn.execute("INSERT INTO utente (nome, cognome, username, email, password) VALUES (?, ?, ?, ?, ?)", (nome, cognome, username, email, password_hash))
