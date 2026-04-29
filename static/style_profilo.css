@@ -106,6 +106,39 @@ body{
     margin-bottom: 40px;
 }
 
+/*------------ STATISTICHE COLLEZIONE ------------*/
+.stats-box{
+    display: flex;
+    gap: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 15px;
+    border-left: 6px solid #d4af37;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.stat-item{
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-item .label{
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #aaa;
+    margin-bottom: 5px;
+}
+
+.stat-item .value{
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+
 
 /*------------ GRIGLIA ACQUISTI ------------*/
 .acquisti{
@@ -425,6 +458,12 @@ footer{
 
     .profilo h1{
         font-size: 2rem;
+    }
+
+    .stat-box{
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
     }
 
     .acquisti{

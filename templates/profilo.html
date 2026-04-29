@@ -8,7 +8,8 @@
         <SCRIPT src="/static/scroll_vetrina.js" defer></SCRIPT>
         <SCRIPT src="/static/menu_vetrina_mobile.js" defer></SCRIPT>
         <SCRIPT src="/static/lightbox.js" defer></SCRIPT>      <!--script per zoom immagine-->
-        <SCRIPT src="/static/stampa_certificato.js" defer></SCRIPT>
+        <SCRIPT src="/static/stampa_certificato.js" defer></SCRIPT> <!--script per la stampa del certificato di autenticità-->
+        <SCRIPT src="/static/statistiche_collezione.js" defer></SCRIPT> <!--script per le statistiche sulla collezione-->
     </HEAD>
 
     <BODY>
@@ -30,6 +31,17 @@
             <H1>La mia collezione</H1>
             <H3>Bentornato <b>{{session['username']}}</b>.</H3>
             <P>Qui trovi le opere che hai acquistato nel tempo</P>
+            
+            <DIV class="stats-box">
+                <DIV class="stat-item">
+                    <SPAN class="label">Valore totale della collezione</SPAN>
+                    <SPAN id="totale-collezione" class="value">0.00€</SPAN>
+                </DIV>
+                <DIV class="stat-item">
+                    <SPAN class="label">Opere acquisite</SPAN>
+                    <SPAN id="numero-opere" class="value">0</SPAN>
+                </DIV>
+            </DIV>
 
             {% if acquisti %}
                 <DIV class="acquisti">
