@@ -1,0 +1,134 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;     
+    min-height: 100vh;
+
+    padding-left: 35%;     
+    padding-right: 20px; 
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/sfondo.jpg");
+    background-size: cover;
+    background-position: right center;
+    background-attachment: fixed;
+    color: #ffffff;
+}
+@keyframes comparsaFluida {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Parte leggermente più in basso */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);    /* Arriva alla posizione originale */
+    }
+}
+.carrello-container{
+    text-align: center;
+    background-color: #ffffff;
+    padding: 40px 20px;
+    border-radius: 12px;
+    width: 100%;
+    max-width:400px;
+    box-sizing: border-box;
+    box-shadow: 0px 8px 24px rgba(0,0,0,0.2);
+    color: #333; 
+    animation-name: comparsaFluida;
+    animation-duration: 0.8s;      /* Durata dell'effetto */
+    animation-timing-function: ease-out; /* Inizia veloce e rallenta alla fine */
+    animation-fill-mode: forwards; /* Mantiene lo stato finale dopo l'animazione */
+}
+a {
+    text-decoration: none;
+}
+.carello-totale{
+    text-align: right;
+    border-top: 2px solid #333;
+    padding-top: 20px;
+}
+#titolo-carrello{
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.btn-rimuovi{
+        background-color: #1a1a1a;
+    color: white;
+    border: 1px solid #1a1a1a;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-rimuovi:hover{
+    background-color: transparent;
+    color: #1a1a1a;
+}
+.btn-continua{
+    background-color: #1a1a1a;
+    color: white;
+    border: 1px solid #1a1a1a;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-continua:hover{
+    background-color: transparent;
+    color: #1a1a1a;
+}
+.btn-procedi{
+    background-color: #1a1a1a;
+    color: white;
+    border: 1px solid #1a1a1a;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-procedi:hover{
+    background-color: transparent;
+    color: #1a1a1a;
+}
+.carrello-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.carrello-table th, .carrello-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+.carrello-table th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+.carrello-table td {
+    color: #555;
+}
+.carrello-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+footer{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.8rem;
+}
+

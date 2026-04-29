@@ -1,34 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrello</title>
+    <title>Il tuo Carrello</title>
     <link rel="stylesheet" href="/static/style_carrello.css">
 </head>
 <body>
-    <div class = "carrello-container">
-        <h1>Carrello</h1>
-        {% if carrello %}
-            <table>
-                <tr>
-                    <th>Opera</th>
-                    <th>Prezzo</th>
-                </tr>
-                {% for item in carrello %}
-                <tr>
-                    <td>{{ item.titolo }}</td>
-                    <td>{{ item.prezzo }}€</td>
-                </tr>
-                {% endfor %}
+    <div class="carrello-container">
+        <h1 id="titolo-carrello">Il tuo Carrello</h1>
+
+        {% if opere %}
+            <table class="carrello-table">
+                <thead>
+                    <tr>
+                        <th>Opera</th>
+                        <th>Prezzo</th>
+                        <th>Azione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in opere %}
+                    <tr>
+                        <td>{{ item['nome'] }}</td>
+                        <td>{{ "%.2f"|format(item['prezzo']) }}€</td>
+                        <td>
+                            <a href="{{ url_for('rimuovi_dal_carrello', id_opera=item['id']) }}" class="btn-rimuovi">Rimuovi</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
             </table>
-            <p class="totale">Totale: {{ totale }}€</p>
-            <a href="/checkout.html"><button id="checkout">Procedi al checkout</button></a>
+
+            <div class="carrello-totale">
+                <p>Totale parziale: <strong>{{ "%.2f"|format(totale) }}€</strong></p>
+                <div class="carrello-actions">
+                    <a href="{{ url_for('mostra_vetrina') }}" class="btn-continua">Continua lo Shopping</a>
+                    <a href="{{ url_for('checkout') }}" class="btn-procedi">Procedi al Pagamento</a>
+                </div>
+            </div>
         {% else %}
-            <p class="vuoto">Il tuo carrello è vuoto.</p>
+            <div class="carrello-vuoto">
+                <p>Il tuo carrello è attualmente vuoto.</p>
+                <a href="{{ url_for('mostra_vetrina') }}" class="btn-continua">Sfoglia la Galleria</a>
+            </div>
         {% endif %}
     </div>
-
-    
 </body>
 </html>

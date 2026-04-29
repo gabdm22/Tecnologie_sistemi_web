@@ -281,7 +281,7 @@ def mostra_carrello():
     conn.close()
     return render_template("carrello.html", opere=opere_in_carrello,totale=totale)
 
-#carrello
+#aggiungi al carrello
 @app.route('/aggiungi_al_carrello/<int:id_opera>')
 def aggiungi_al_carrello(id_opera):
     username = session.get('username')
@@ -295,7 +295,17 @@ def aggiungi_al_carrello(id_opera):
         pass    
     conn.close()
     return redirect(url_for('mostra_carrello'))
-
+#rimuovi dal carrello
+@app.route('/rimuovi_dal_carrello/<int:id_opera>')
+def rimuovi_dal_carrello(id_opera):
+    username = session.get('username')
+    if not username:
+        return redirect("/form_login.html")
+    conn = get_connection_db()
+    conn.execute("DELETE FROM in_carrello WHERE id_opera = ? AND id_utente = ?", (id_opera, username))
+    conn.commit()
+    conn.close()
+    return redirect(url_for('mostra_carrello'))
 
 # pagina assistenza
 @app.route('/form_assistenza.html', methods=['GET', 'POST'])
