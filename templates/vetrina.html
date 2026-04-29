@@ -53,12 +53,13 @@
 
         <MAIN class="vetrina">              <!--VETRINA-->
             {% for op in opere %}
-            <ARTICLE class="riga_opera">    <!--Box contenente dati di entità "opera" e immagine-->
-                <DIV class="info_opera">
-                    <H2 class="nome_opera">{{op['nome']}}</H2>
-                    <P class="prezzo"><b>Prezzo:</b> {{"%.2f"|format(op['prezzo'])}}€</P>
-                    <P class="dettaglio"><b>Autore: </b>{{op['autore']}}</P>
-                    <P class="dettaglio"><b>Categoria: </b>{{op['categoria']}}</P>
+                {% if op['disponibilita'] %}
+                    <ARTICLE class="riga_opera">    <!--Box contenente dati di entità "opera" e immagine-->
+                        <DIV class="info_opera">
+                            <H2 class="nome_opera">{{op['nome']}}</H2>
+                            <P class="prezzo"><b>Prezzo:</b> {{"%.2f"|format(op['prezzo'])}}€</P>
+                            <P class="dettaglio"><b>Autore: </b>{{op['autore']}}</P>
+                            <P class="dettaglio"><b>Categoria: </b>{{op['categoria']}}</P>
 
                     {% if op['dimensioni'] == None or op['dimensioni'] == '' %}
                     <P class="dettaglio"><b>Dimensioni: </b>non specificate</P>
