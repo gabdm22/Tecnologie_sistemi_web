@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, render_template, redirect, session
 import sqlite3
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -78,10 +79,78 @@ def carica_opera():
 # pagina acquisto
 @app.route('/form_acquisto.html')
 def mostra_pag_acquisto():
-    return render_template("/form_acquisto.html", acquistato=False)
+    autore = session.get('username')
+    if not autore:
+        return redirect("/form_login.html")
+    
+    id_opera_da_acquistare = request.args.get('id_opera')
+    return render_template("/form_acquisto.html", acquistato=False, id_opera=id_opera_da_acquistare)
 
+@app.route('/acquista', methods=["POST"])
+def acquista_opera():
+    utente_loggato = session.get('username')
+    if not utente_loggato:
+        return redirect("/form_login.html")
+    
+    id_opera = request.form.get('id_opera')
+    indirizzo = request.form.get('indirizzo')
+    numero_carta = request.form.get('numero_carta')
+    scadenza = request.form.get('scadenza')
 
+    conn = get_connection_db()
 
+    try:
+        # salvo il prezzo in tabella ORDINE
+        opera = conn.execute("SELECT prezzo FROM opera WHERE id = ?", (id_opera,)).fetchone()
+        prezzo_opera = opera['prezzo']
+        cursor = conn.cursor()
+
+        # salvo l'indirizzo in INDIRIZZO
+        cursor.execute(
+            "INSERT INTO indirizzo (via, citta, cap, id_utente) VALUES (?, ?, ?, ?)",
+            (indirizzo, 'N/D', 'N/D', utente_loggato)
+        )
+        id_indirizzo_generato = cursor.lastrowid
+
+        # salvo il metodo di pagamento in METODO DI PAGAMENTO
+        if numero_carta:
+            ultime_4 = numero_carta[-4:]
+        else:
+            ultime_4 = '0000'
+        cursor.execute(
+            "INSERT INTO metodo_pagamento (provider, scadenza, ultime_4_cifre, token_pagamento, id_utente) VALUES (?, ?, ?, ?, ?)",
+            ("Carta di credito", scadenza, ultime_4, "fake_token_123", utente_loggato)
+        )
+
+        # creo l'ordine generale in ORDINE
+        data = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        cursor.execute(
+            "INSERT INTO ordine (data, stato, totale, id_utente, id_indirizzo) VALUES (?, ?, ?, ?, ?)",
+            (data, "Completato", prezzo_opera, utente_loggato, id_indirizzo_generato)
+        )
+        id_ordine_generato = cursor.lastrowid
+
+        #creo l'ordine dettagliato in ORDINE_OPERA
+        cursor.execute(
+            "INSERT INTO ordine_opera (id_ordine, id_opera, prezzo_acquisto) VALUES (?, ?, ?)",
+            (id_ordine_generato, id_opera, prezzo_opera)
+        )
+
+        # tolgo l'opera dalla vetrina
+        cursor.execute(
+            "UPDATE opera SET disponibilita=0 WHERE id=?",
+            (id_opera,)
+        )
+
+        conn.commit()
+        esito_acquisto = True
+
+    except Exception as e:
+        conn.rollback()
+        esito_acquisto = False
+
+    conn.close()
+    return render_template("/form_acquisto.html", acquistato=esito_acquisto)
 
 
 # -----------------------------------------------------------------------
