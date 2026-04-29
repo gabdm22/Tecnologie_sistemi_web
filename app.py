@@ -273,8 +273,8 @@ def mostra_carrello():
     query = """
         SELECT o.id, o.nome, o.prezzo, o.immagine
         FROM in_carrello ic JOIN opera o ON ic.id_opera=o.id
-        WHERE ic.id_utente = ?
-    """
+        WHERE ic.id_utente = ? and o.disponibilita=1
+    """#prendo tutte le opere che sono nel carrello dell'utente loggato e che sono ancora disponibili (disponibilita=1)
     opere_in_carrello = conn.execute(query, (utente_loggato,)).fetchall()
     totale = sum(opera['prezzo'] for opera in opere_in_carrello)
 
