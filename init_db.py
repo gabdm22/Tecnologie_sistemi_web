@@ -60,7 +60,7 @@ cursor.execute('''
 
 # 5. INCARELLO 
 cursor.execute('''
-    CREATE TABLE IF NOT EXISTS incarello(
+    CREATE TABLE IF NOT EXISTS in_carrello(
         id_utente TEXT NOT NULL,
         id_opera INTEGER NOT NULL,
         quantita INTEGER DEFAULT 1,
