@@ -216,8 +216,11 @@ def effettua_login():
         return jsonify({"success": False, "message": "username o password errati"}), 401
 
             
-
- 
+# logout
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect('/vetrina.html')
 
 
 
