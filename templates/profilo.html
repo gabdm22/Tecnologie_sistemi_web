@@ -8,6 +8,7 @@
         <SCRIPT src="/static/scroll_vetrina.js" defer></SCRIPT>
         <SCRIPT src="/static/menu_vetrina_mobile.js" defer></SCRIPT>
         <SCRIPT src="/static/lightbox.js" defer></SCRIPT>      <!--script per zoom immagine-->
+        <SCRIPT src="/static/stampa_certificato.js" defer></SCRIPT>
     </HEAD>
 
     <BODY>
@@ -41,6 +42,7 @@
                                 <P>Autore: <b>{{acq['autore']}}</b></P>
                                 <P class="prezzo-pagato">Prezzo pagato: {{"%.2f"|format(acq['totale'])}}€</P>
                             </DIV>
+                            <BUTTON class="btn-certificato" onclick="stampaCertificato(`{{ acq['nome'] }}`, `{{ acq['autore'] }}`, `{{ acq['data'] }}`, `{{ acq['totale'] }}`)">Scarica certificato</BUTTON>
                         </DIV>
                     {% endfor %}
                 </DIV>
@@ -57,6 +59,29 @@
         <FOOTER>        <!--Piè di pagina per copyright e firma-->
             <P>&copy;2026 MoVA - Museum of Virtual Art. Created by Nicolò Carbone and Gabriele Di Martino</P>
         </FOOTER>
+
+        <DIV id="certificato-stampa" class="stampa">
+            <DIV class="cornice">
+                <H1>MoVA</H1>
+                <H2>Certificato di autenticità</H2>
+                <HR>
+
+                <P>Si certifica ufficialmente che l'utente <b>{{session['username']}}</b></P>
+                <P>è il legittimo proprietario dell'opera d'arte digitale:</P>
+                <H3 id="cert-nome-opera"></H3>
+                <P>Realizzata dall'artista: <b id="cert-autore-opera"></b></P>
+
+                <DIV class="dettagli-cert">
+                    <P>Data acquisizione: <SPAN id="cert-data"></SPAN></P>
+                    <P>Valore di mercato: <SPAN id="cert-prezzo"></SPAN>€</P>
+                </DIV>
+
+                <DIV class="firma">
+                    <P>La direzione MoVA</P>
+                    <DIV class="timbro">MoVA CERTIFIED</DIV>
+                </DIV>
+            </DIV>
+        </DIV>
 
         <DIV id="lightbox" class="lightbox">    <!--va in sovrimpressione, oscura tutto per focus sull'immagine-->
             <SPAN class="chiudi-lightbox">&times;</SPAN>
