@@ -185,6 +185,11 @@ def registazione():
     if utente_esistente:
         conn.close()
         return "ERRORE! username già esistente",400
+    # Controlla se l'email esiste già
+    email_esistente = conn.execute("SELECT * FROM utente WHERE email = ?", (email,)).fetchone()
+    if email_esistente:
+        conn.close()
+        return "ERRORE! email già esistente",400
     #genera hash della password e salva utente
     password_hash = generate_password_hash(password)
     conn.execute("INSERT INTO utente (nome, cognome, username, email, password) VALUES (?, ?, ?, ?, ?)", (nome, cognome, username, email, password_hash))
@@ -227,6 +232,23 @@ def mostra_profilo():
         return redirect("/form_login.html")
     
     conn = get_connection_db()
+#endpoint per testare se email o utente esistono già durante la registrazione
+@app.route('/verifica-unicita', methods=['POST'])
+def verifica_unicita():
+    data = request.get_json()
+    campo = data.get('campo')
+    valore = data.get('valore')
+    if campo not in ['username', 'email']:
+        return jsonify({"errore": "Campo non valido"}), 400
+    conn = get_connection_db()
+    #basta una riga 
+    query = f"SELECT 1 FROM utente WHERE {campo} = ?"
+    #controllo 
+    risultato = conn.execute(query, (valore,)).fetchone()
+    conn.close()
+    return jsonify({"disponibile": risultato is None})
+
+
 
     query = """
         SELECT o.data, o.totale, op.nome, op.immagine, op.autore
