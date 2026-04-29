@@ -39,12 +39,20 @@ def mostra_vetrina():
 # pagina vendita
 @app.route('/form_vendita.html')
 def vendi():
+    autore = session.get('username')
+    if not autore:  # blocco l'accesso alla pagina di vendita a chi non è loggato 
+        return redirect('/form_login.html')
+    
     return render_template("form_vendita.html")
 
 
-# upload
+# vendita
 @app.route('/upload', methods=["POST"])
 def carica_opera():
+    autore = session.get('username')
+    if not autore:  # blocco la vendita a chi non è loggato
+        return redirect('/form_login.html')
+
     nome = request.form["nome"]
     prezzo = request.form["prezzo"]
     categoria = request.form["categoria"]
@@ -57,7 +65,7 @@ def carica_opera():
         immagine.save(percorso_salv)
 
         conn = get_connection_db()
-        conn.execute("INSERT INTO opera (nome, prezzo, categoria, dimensioni, immagine) VALUES (?, ?, ?, ?, ?)", (nome, prezzo, categoria, dimensioni, nome_img))
+        conn.execute("INSERT INTO opera (nome, autore, prezzo, categoria, dimensioni, immagine) VALUES (?, ?, ?, ?, ?, ?)", (nome, autore, prezzo, categoria, dimensioni, nome_img))
         conn.commit()
         conn.close()
 

@@ -17,7 +17,7 @@
                 MoVA - Museum of Virtual Art
             </DIV>
 
-            <!--menù a tre linee espandibile (hamburger), visibile solo su dispositivo con width < 768px-->
+            <!--menù a tre linee espandibile (hamburger), visibile solo su dispositivo con "width < 768px"    -->
             <DIV class="hamburger" id="hamburger">☰</DIV>
 
             <DIV class="menu" id="menu">
@@ -29,7 +29,7 @@
                 {% else %}
                     <A href="form_login.html">Accedi</A>
                     <A href="form_registrazione.html">Registrati</A>
-                    <A href="form_vendita.html">Vendi</A>
+                    <!--<A href="form_vendita.html">Vendi</A>-->
                     <A href="form_assistenza.html">Assistenza</A>
             
                 {% endif %}
@@ -56,7 +56,7 @@
                 <DIV class="info_opera">
                     <H2 class="nome_opera">{{op['nome']}}</H2>
                     <P class="prezzo"><b>Prezzo:</b> {{"%.2f"|format(op['prezzo'])}}€</P>
-                    <P class="dettaglio"><b>Autore: </b>Leonardo da Vinci</P>
+                    <P class="dettaglio"><b>Autore: </b>{{op['autore']}}</P>
                     <P class="dettaglio"><b>Categoria: </b>{{op['categoria']}}</P>
 
                     {% if op['dimensioni'] == None or op['dimensioni'] == '' %}
