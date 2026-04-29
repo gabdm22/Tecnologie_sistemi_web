@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const btn_chiudi = document.querySelector('.chiudi-lightbox');
 
     /* seleziona tutte le immagini delle opere */
-    const immagini_opere = document.querySelectorAll('.immagine_opera img');
+    const immagini_opere = document.querySelectorAll('.immagine_opera img, img.immagine_opera');
 
     /* applica a tutte le immagini questo evento, se cliccate si attiva la lightbox (che aveva display='none') */
     immagini_opere.forEach(img=>{

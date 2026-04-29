@@ -33,7 +33,7 @@
                 <DIV class="acquisti">
                     {% for acq in acquisti %}
                         <DIV class="card-acquisto">
-                            <IMG src="/static/uploads/{{acq['immagine']}}" class="img-acquisto" alt="{{acq['nome']}}">
+                            <IMG src="/static/uploads/{{acq['immagine']}}" class="immagine_opera" alt="{{acq['nome']}}">
                             <DIV>
                                 <P class="data-ordine">Acquistato il: {{acq['data']}}</P>
                                 <H2>{{acq['nome']}}</H2>
@@ -56,5 +56,10 @@
         <FOOTER>        <!--Piè di pagina per copyright e firma-->
             <P>&copy;2026 MoVA - Museum of Virtual Art. Created by Nicolò Carbone and Gabriele Di Martino</P>
         </FOOTER>
+
+        <DIV id="lightbox" class="lightbox">    <!--va in sovrimpressione, oscura tutto per focus sull'immagine-->
+            <SPAN class="chiudi-lightbox">&times;</SPAN>
+            <IMG id="lightbox-img" class="lightbox-img" src="">
+        </DIV>
     </BODY>
 </HTML>
