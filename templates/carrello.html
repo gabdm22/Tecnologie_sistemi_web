@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrello</title>
+    <link rel="stylesheet" href="/static/style_carrello.css">
+</head>
+<body>
+    <div class = "carrello-container">
+        <h1>Carrello</h1>
+        {% if carrello %}
+            <table>
+                <tr>
+                    <th>Opera</th>
+                    <th>Prezzo</th>
+                </tr>
+                {% for item in carrello %}
+                <tr>
+                    <td>{{ item.titolo }}</td>
+                    <td>{{ item.prezzo }}€</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <p class="totale">Totale: {{ totale }}€</p>
+            <a href="/checkout.html"><button id="checkout">Procedi al checkout</button></a>
+        {% else %}
+            <p class="vuoto">Il tuo carrello è vuoto.</p>
+        {% endif %}
+    </div>
+
+    
+</body>
+</html>
