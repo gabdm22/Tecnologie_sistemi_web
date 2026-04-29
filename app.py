@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template, redirect, session
+from flask import Flask, jsonify, request, render_template, redirect, session, url_for
 import sqlite3
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -262,6 +262,39 @@ def verifica_unicita():
     conn.close()
     return jsonify({"disponibile": risultato is None})
 
+#pagina carrello
+@app.route('/carrello.html')
+def mostra_carrello():
+    utente_loggato = session.get('username')
+    if not utente_loggato:
+        return redirect("/form_login.html")
+    
+    conn = get_connection_db()
+    query = """
+        SELECT o.id, o.nome, o.prezzo, o.immagine
+        FROM in_carrello ic JOIN opera o ON ic.id_opera=o.id
+        WHERE ic.id_utente = ?
+    """
+    opere_in_carrello = conn.execute(query, (utente_loggato,)).fetchall()
+    totale = sum(opera['prezzo'] for opera in opere_in_carrello)
+
+    conn.close()
+    return render_template("carrello.html", opere=opere_in_carrello,totale=totale)
+
+#carrello
+@app.route('/aggiungi_al_carrello/<int:id_opera>')
+def aggiungi_al_carrello(id_opera):
+    username = session.get('username')
+    if not username:
+        return redirect("/form_login.html")
+    conn = get_connection_db()
+    try:
+        conn.execute("INSERT INTO in_carrello (id_opera, id_utente) VALUES (?, ?)", (id_opera, username))
+        conn.commit()
+    except sqlite3.IntegrityError:
+        pass    
+    conn.close()
+    return redirect(url_for('mostra_carrello'))
 
 
 # pagina assistenza
@@ -282,3 +315,4 @@ def assistenza():
 
 if __name__=="__main__":
     app.run(host='0.0.0.0', port=5500, debug=True)
+
