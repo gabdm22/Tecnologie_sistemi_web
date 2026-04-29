@@ -223,6 +223,23 @@ def logout():
     return redirect('/vetrina.html')
 
 
+#endpoint per testare se email o utente esistono già durante la registrazione
+@app.route('/verifica-unicita', methods=['POST'])
+def verifica_unicita():
+    data = request.get_json()
+    campo = data.get('campo')
+    valore = data.get('valore')
+    if campo not in ['username', 'email']:
+        return jsonify({"errore": "Campo non valido"}), 400
+    conn = get_connection_db()
+    #basta una riga 
+    query = f"SELECT 1 FROM utente WHERE {campo} = ?"
+    #controllo 
+    risultato = conn.execute(query, (valore,)).fetchone()
+    conn.close()
+    return jsonify({"disponibile": risultato is None})
+
+
 
 
 

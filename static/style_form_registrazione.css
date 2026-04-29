@@ -18,6 +18,12 @@ body{
     background-attachment: fixed;
     color: #ffffff;
 }
+.feedback{
+    display: block; 
+    min-height: 1.2em;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
 .registrazione-conteiner{
     background-color: #ffffff;
     padding: 40px;

@@ -6,8 +6,9 @@
     <title>Crea il tuo account MoVA</title>
     <link rel="stylesheet" href="/static/style_form_registrazione.css">
 
-    <SCRIPT src="/static/controllo_password.js"></SCRIPT>    <!-- script per controllo requisiti password -->
+    <SCRIPT src="/static/controllo_password.js" defer></SCRIPT>    <!-- script per controllo requisiti password -->
     <SCRIPT src="/static/validazione_password.js" defer></SCRIPT>   <!-- script per controllo conferma password -->
+    <SCRIPT src="/static/controllo_email.js" defer></SCRIPT>   <!-- script per controllo email e username già esistenti -->
 </head>
 <body>
     <div class="registrazione-conteiner">
@@ -20,8 +21,10 @@
                 <input type="text" id="Cognome" name="cognome">
                 <label for="username">Username:</label>
                 <input type="text" id="Username" name="username">
+                <span id="Username-feedback" class = "feedback"></span>
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email">
+                <input type="email" id="Email" name="email">
+                <span id="Email-feedback" class = "feedback"></span>
                 <label for="password">Password:</label>
                 <input type="password" id="pass1" name="password">
                 <label for="confirm_password">Verifica Password:</label>
