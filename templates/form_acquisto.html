@@ -21,6 +21,8 @@
                 <H1 id="titolo">Acquista</H1>
                 <H3 id="sottotitolo">Inserisci i dati per completare l'acquisto</H3>
                 <FORM action="/acquista" id="form_acquisto" method="post" name="form">
+                    <INPUT type="hidden" name="id_opera" value="{{ id_opera }}">
+
                     <LABEL>Nome e cognome: </LABEL>
                     <INPUT type="text" minlength="4" maxlength="30" id="nome_cognome" name="nome_cognome" required>
                     <br><br>
@@ -34,7 +36,7 @@
                     <br><br>
 
                     <LABEL>Numero di carta: </LABEL>
-                    <INPUT type="text" pattern="[0-9]{16}" minlength="19" maxlength="19" id="numero_carta" name="numero_carta" placeholder="XXXX XXXX XXXX XXXX" required>
+                    <INPUT type="text" pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" minlength="19" maxlength="19" id="numero_carta" name="numero_carta" placeholder="XXXX XXXX XXXX XXXX" required>
                     <br><br>
 
                     <LABEL>Scadenza: </LABEL>

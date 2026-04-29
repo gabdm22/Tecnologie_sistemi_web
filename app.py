@@ -146,6 +146,7 @@ def acquista_opera():
         esito_acquisto = True
 
     except Exception as e:
+        print(f"ERRORE: {e}")
         conn.rollback()
         esito_acquisto = False
 
@@ -218,11 +219,26 @@ def logout():
     return redirect('/vetrina.html')
 
 
+# profilo
+@app.route('/profilo.html')
+def mostra_profilo():
+    utente_loggato = session.get('username')
+    if not utente_loggato:
+        return redirect("/form_login.html")
+    
+    conn = get_connection_db()
 
+    query = """
+        SELECT o.data, o.totale, op.nome, op.immagine, op.autore
+        FROM ordine o JOIN ordine_opera oo on o.id_ordine=oo.id_ordine JOIN opera op ON oo.id_opera=op.id
+        WHERE o.id_utente = ?
+        ORDER BY o.data DESC
+    """
 
-
-
-
+    lista_acquisti = conn.execute(query, (utente_loggato,)).fetchall()
+    conn.close()
+    
+    return render_template("profilo.html", acquisti=lista_acquisti)
 
 
 

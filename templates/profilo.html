@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<HTML>
+    <HEAD>
+        <TITLE>MoVA - Il mio profilo</TITLE>
+        <META name="viewport" content="width=device-width, initial-scale=1.0">
+        <LINK href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+        <LINK rel="stylesheet" href="/static/style_profilo.css">
+        <SCRIPT src="/static/scroll_vetrina.js" defer></SCRIPT>
+        <SCRIPT src="/static/lightbox.js" defer></SCRIPT>      <!--script per zoom immagine-->
+    </HEAD>
+
+    <BODY>
+        <NAV class="navbar">        <!--MENU'-->
+            <DIV class="logo">
+                MoVA - I miei acquisti
+            </DIV>
+
+            <!--menù a tre linee espandibile (hamburger), visibile solo su dispositivo con "width < 768px"    -->
+            <DIV class="hamburger" id="hamburger">☰</DIV>
+
+            <DIV class="menu" id="menu">
+                <A href="/vetrina.html">Torna alla vetrina</A>
+                <A href="/logout">Logout</A>
+            </DIV>
+        </NAV>
+
+        <MAIN class="profilo">
+            <H1>La mia collezione</H1>
+            <H3>Bentornato <b>{{session['username']}}</b>.</H3>
+            <P>Qui trovi le opere che hai acquistato nel tempo</P>
+
+            {% if acquisti %}
+                <DIV class="acquisti">
+                    {% for acq in acquisti %}
+                        <DIV class="card-acquisto">
+                            <IMG src="/static/uploads/{{acq['immagine']}}" class="img-acquisto" alt="{{acq['nome']}}">
+                            <DIV>
+                                <P class="data-ordine">Acquistato il: {{acq['data']}}</P>
+                                <H2>{{acq['nome']}}</H2>
+                                <P>Autore: <b>{{acq['autore']}}</b></P>
+                                <P class="prezzo-pagato">Prezzo pagato: {{"%.2f"|format(acq['totale'])}}€</P>
+                            </DIV>
+                        </DIV>
+                    {% endfor %}
+                </DIV>
+            {% else %}
+                <DIV class="collezione-vuota">
+                    <H2>La tua galleria è ancora vuota</H2>
+                    <P>Esplora la vetrina per comprare opere d'arte</P>
+                    <br>
+                    <A href="/vetrina.html" class="link-vetrina">Vai alla vetrina</A>
+                </DIV>
+            {% endif %}
+        </MAIN>
+
+        <FOOTER>        <!--Piè di pagina per copyright e firma-->
+            <P>&copy;2026 MoVA - Museum of Virtual Art. Created by Nicolò Carbone and Gabriele Di Martino</P>
+        </FOOTER>
+    </BODY>
+</HTML>

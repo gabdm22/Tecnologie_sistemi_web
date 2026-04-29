@@ -1,0 +1,265 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/static/sfondo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #ffffff;
+}
+
+/*---------- NAVBAR E MENU HAMBURGER ----------*/
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 20px 40px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+
+    /* regole per trasparenza */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.2s ease;
+}
+
+.navbar .logo{
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    color: #1a1a1a;
+    transition: all 0.2s ease;
+}
+
+.navbar .menu a{
+    text-decoration: none;
+    color: #1a1a1a;
+    margin-left: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    transition: all 0.2s ease;
+}
+
+.navbar .menu a:hover{
+    color: #7f8c8d;
+}
+
+.hamburger{
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #1a1a1a;
+    user-select: none;
+    transition: all 0.2s ease;
+}
+
+/* classe per lo scrolled, regolata da javascript */
+.navbar.scrolled{
+    padding: 10px 40px;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);    /*filtro della sfocatura di ciò che è sotto*/
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.navbar.scrolled .logo{
+    font-size: 1rem;
+}
+
+.navbar.scrolled .menu a{
+    font-size: 0.8rem;
+}
+
+.navbar.scrolled .hamburger{
+    font-size: 1.6rem;
+}
+
+
+/*------------ PROFILO ------------*/
+.profilo h1{
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 15px;
+}
+
+.profilo h3{
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-top: 20px;
+    color: #e0e0e0;
+}
+
+.profilo p{
+    font-size: 1rem;
+    color: #cccccc;
+    margin-bottom: 40px;
+}
+
+
+/*------------ GRIGLIA ACQUISTI ------------*/
+.acquisti{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card-acquisto{
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    transition: trasform 0,3s ease;
+}
+
+.card-acquisto:hover{
+    transform: traslateY(-5px)
+}
+
+.img-acquisto{
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 3px solid #1a1a1a;
+}
+
+.card-acquisto div{
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-acquisto h2{
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    letter-spacing: 1px;
+}
+
+.data-ordine{
+    font-size: 0.85rem !important;
+    color: #888888 !important;
+    margin-bottom: 15px !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-acquisto p{
+    margin: 5px 0;
+    color: #555;
+}
+
+.prezzo-pagato{
+    margin-top: auto !important;
+    padding-top: 15px;
+    font-size: 1.3rem !important;
+    font-weight: 700;
+    color: #2e7d32 !important;
+    border-top: 1px solid #eeeeee;
+}
+
+/*------------ GALLERIA VUOTA ------------*/
+
+.collezione-vuota{
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 60px 20px;
+    border-radius: 12px;
+    border: 1px dashed rgba(255, 255, 255, 0.4);
+    margin-top: 40px;
+}
+
+.collezione-vuota h2{
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.link-vetrina{
+    display: inline-block;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 12px 30px;
+    border-radius: 30px;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.link-vetrina:hover{
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+
+
+/*------------ FOOTER ------------*/
+footer{
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 50px;
+    color: #cccccc;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+
+/*------------ MEDIA QUERY (per mobile) ------------*/
+@media (max-width: 768px){
+    .navbar{
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 15px 20px;
+    }
+
+    .navbar .logo{
+        margin-bottom: 0;
+        text-align: left;
+    }
+
+    .hamburger{
+        display: block;
+    }
+
+    .navbar .menu{
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 20px 0;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar .menu.aperto{       /*classe regolata da javascript*/
+        display: flex;
+    }
+
+    .navbar .menu a{
+        margin: 15px 0;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .profilo h1{
+        font-size: 2rem;
+    }
+
+    .acquisti{
+        grid-template-columns: 1fr;
+    }
+}
