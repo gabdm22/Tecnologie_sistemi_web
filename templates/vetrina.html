@@ -5,41 +5,34 @@
         <META name="viewport" content="width=device-width, initial-scale=1.0">
         <LINK href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
         <LINK rel="stylesheet" href="/static/style_vetrina.css">
-        <SCRIPT src="/static/scroll_vetrina.js" defer></SCRIPT>     <!--script per scroll vetrina-->
-        <SCRIPT src="/static/menu_vetrina_mobile.js" defer></SCRIPT>    <!--script per menù su mobile-->
-        <SCRIPT src="/static/lightbox.js" defer></SCRIPT>      <!--script per zoom immagine-->
-        <SCRIPT src="/static/ricerca.js" defer></SCRIPT>     <!--script per barra ricerca-->
+        <SCRIPT src="/static/scroll_vetrina.js" defer></SCRIPT>
+        <SCRIPT src="/static/menu_vetrina_mobile.js" defer></SCRIPT>
+        <SCRIPT src="/static/lightbox.js" defer></SCRIPT>
+        <SCRIPT src="/static/ricerca.js" defer></SCRIPT>
     </HEAD>
 
     <BODY>
-        <NAV class="navbar">        <!--MENU'-->
-            <DIV class="logo">
-                MoVA - Museum of Virtual Art
-            </DIV>
+        <NAV class="navbar">
+            <DIV class="logo">MoVA - Museum of Virtual Art</DIV>
 
-            <!--menù a tre linee espandibile (hamburger), visibile solo su dispositivo con "width < 768px"    -->
             <DIV class="hamburger" id="hamburger">☰</DIV>
 
             <DIV class="menu" id="menu">
                 {% if 'username' in session %}    
-                    <A href="profilo.html" class="user">Ciao, <b>{{session['username']}}</b>!</A>
-                    <A href="form_vendita.html">Vendi</A>
-                    <A href="carrello.html">Carrello</A>
-                    <A href="form_assistenza.html">Assistenza</A>
-                    <A href="/logout">Logout</A>
+                    <A href="{{ url_for('mostra_profilo') }}" class="user">Ciao, <b>{{session['username']}}</b>!</A>
+                    <A href="{{ url_for('vendi') }}">Vendi</A>
+                    <A href="{{ url_for('mostra_carrello') }}">Carrello</A>
+                    <A href="{{ url_for('assistenza') }}">Assistenza</A>
+                    <A href="{{ url_for('logout') }}">Logout</A>
                 {% else %}
-                    <A href="form_login.html">Accedi</A>
-                    <A href="form_registrazione.html">Registrati</A>
-                    <!--<A href="form_vendita.html">Vendi</A>-->
-                    <A href="form_assistenza.html">Assistenza</A>
-            
+                    <A href="{{ url_for('login') }}">Accedi</A>
+                    <A href="{{ url_for('registra') }}">Registrati</A>
+                    <A href="{{ url_for('assistenza') }}">Assistenza</A>
                 {% endif %}
             </DIV>
         </NAV>
 
-
-        <!-- filtri per la ricerca delle opere in vetrina -->
-        <DIV class="contenitore-ricerca">   <!--barra di ricerca opere-->
+        <DIV class="contenitore-ricerca">
             <INPUT id="barra-ricerca" type="text" placeholder="Cerca...">
             
             <SELECT id="filtro-categoria" class="tendina-categoria">
@@ -51,45 +44,48 @@
             </SELECT>
         </DIV>
 
-        <MAIN class="vetrina">              <!--VETRINA-->
+        <MAIN class="vetrina">
             {% for op in opere %}
-                {% if op['disponibilita'] %}
-                    <ARTICLE class="riga_opera">    <!--Box contenente dati di entità "opera" e immagine-->
-                        <DIV class="info_opera">
-                            <H2 class="nome_opera">{{op['nome']}}</H2>
-                            <P class="prezzo"><b>Prezzo:</b> {{"%.2f"|format(op['prezzo'])}}€</P>
-                            <P class="dettaglio"><b>Autore: </b>{{op['autore']}}</P>
-                            <P class="dettaglio"><b>Categoria: </b>{{op['categoria']}}</P>
+                {# L'opera viene renderizzata solo se disponibile #}
+                {% if op['disponibilita'] == 1 %}
+                <ARTICLE class="riga_opera">
+                    <DIV class="info_opera">
+                        <H2 class="nome_opera">{{op['nome']}}</H2>
+                        <P class="prezzo"><b>Prezzo:</b> {{"%.2f"|format(op['prezzo'])}}€</P>
+                        <P class="dettaglio"><b>Autore: </b>{{op['autore']}}</P>
+                        <P class="dettaglio"><b>Categoria: </b>{{op['categoria']}}</P>
 
-                    {% if op['dimensioni'] == None or op['dimensioni'] == '' %}
-                    <P class="dettaglio"><b>Dimensioni: </b>non specificate</P>
-                    {% else %}
-                    <P class="dettaglio"><b>Dimensioni: </b>{{op['dimensioni']}}</P>
-                    {% endif %}
-                    
-                    {% if op['disponibilita']%}
+                        {% if op['dimensioni'] == None or op['dimensioni'] == '' %}
+                            <P class="dettaglio"><b>Dimensioni: </b>non specificate</P>
+                        {% else %}
+                            <P class="dettaglio"><b>Dimensioni: </b>{{op['dimensioni']}}</P>
+                        {% endif %}
+                        
                         <P class="flag_disponibilita disponibile">Disponibile</P>
-                        <A href="form_acquisto.html?id_opera={{ op['id'] }}"><BUTTON class="button_acquista">Acquista</BUTTON></A>
-                        <A href="{{url_for('aggiungi_al_carrello', id_opera=op['id'])}}"><BUTTON class="button_acquista">Aggiungi al carrello</BUTTON></A>
-                    {% else %}
-                        <P class="flag_disponibilita non_disponibile">Non disponibile</P>
-                        <A href="form_acquisto.html?id_opera={{ op['id'] }}"><BUTTON class="button_acquista" disabled>Acquista</BUTTON></A>
-                        <A href="{{url_for('aggiungi_al_carrello', id_opera=op['id'])}}"><BUTTON class="button_acquista">Aggiungi al carrello</BUTTON></A>
-                    {% endif %}
-                </DIV>
-                <DIV class="immagine_opera">
-                    <IMG src="/static/uploads/{{op['immagine']}}" alt="{{op['nome']}}">
-                </DIV>
-            </ARTICLE>
+                        
+                        <DIV class="azioni-acquisto">
+                            <A href="{{ url_for('mostra_pag_acquisto', id_opera=op['id']) }}">
+                                <BUTTON class="button_acquista">Acquista</BUTTON>
+                            </A>
+                            <A href="{{ url_for('aggiungi_al_carrello', id_opera=op['id']) }}">
+                                <BUTTON class="button_acquista">Aggiungi al carrello</BUTTON>
+                            </A>
+                        </DIV>
+                    </DIV>
+
+                    <DIV class="immagine_opera">
+                        <IMG src="/static/uploads/{{op['immagine']}}" alt="{{op['nome']}}" class="zoom-img">
+                    </DIV>
+                </ARTICLE>
+                {% endif %}
             {% endfor %}
         </MAIN>
 
-        <FOOTER>        <!--Piè di pagina per copyright e firma-->
+        <FOOTER>
             <P>&copy;2026 MoVA - Museum of Virtual Art. Created by Nicolò Carbone and Gabriele Di Martino</P>
         </FOOTER>
 
-
-        <DIV id="lightbox" class="lightbox">    <!--va in sovrimpressione, oscura tutto per focus sull'immagine-->
+        <DIV id="lightbox" class="lightbox">
             <SPAN class="chiudi-lightbox">&times;</SPAN>
             <IMG id="lightbox-img" class="lightbox-img" src="">
         </DIV>
