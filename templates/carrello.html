@@ -35,6 +35,7 @@
                 <p>Totale parziale: <strong>{{ "%.2f"|format(totale) }}€</strong></p>
                 <div class="carrello-actions">
                     <a href="{{ url_for('mostra_vetrina') }}" class="btn-continua">Continua lo Shopping</a>
+                  <a href="{{ url_for('mostra_pag_acquisto', da_carrello='true') }}" class="btn-procedi">Procedi al Checkout</a>
                 </div>
             </div>
         {% else %}

@@ -13,7 +13,7 @@
         <DIV>
             {% if acquistato %}
                 <H1 id="titolo" class="successo-titolo">Acquisto effettuato con successo!</H1>
-                <H3 id="sottotitolo" class="successo-testo">La tua opera sarà spedita il prima possibile</H3>
+                <H3 id="sottotitolo" class="successo-testo">Le tue opere saranno spedite il prima possibile</H3>
 
                 <P class="contenitore-link">
                     <A href="/vetrina.html" class="link-successo">Torna alla vetrina</A>
@@ -22,7 +22,21 @@
                 <H1 id="titolo">Acquista</H1>
                 <H3 id="sottotitolo">Inserisci i dati per completare l'acquisto</H3>
                 <FORM action="/acquista" id="form_acquisto" method="post" name="form">
-                    <INPUT type="hidden" name="id_opera" value="{{ id_opera }}">
+                    <INPUT type="hidden" name="da_carrello" value="{{ 'true' if da_carrello else 'false' }}">
+                    {% if not da_carrello and opere|length >0 %}
+                        <INPUT type="hidden" name="id_opera" value="{{ opere[0]['id'] }}">
+                    {% endif %}
+
+                    <DIV class="riepilogo-box"> 
+                        <H3>Riepilogo Ordine</H3> 
+                        <UL>
+                            {% for op in opere %} 
+                            <LI>{{ op['nome'] }} - <B>{{ "%.2f"|format(op['prezzo']) }}€</B></LI> 
+                            {% endfor %} 
+                        </UL> 
+                        <P>Totale complessivo: <B>{{ "%.2f"|format(totale) }}€</B></P> 
+                    </DIV> 
+                     <br>
 
                     <LABEL>Nome e cognome: </LABEL>
                     <INPUT type="text" minlength="4" maxlength="30" id="nome_cognome" name="nome_cognome" required>

@@ -79,19 +79,43 @@ def carica_opera():
 # pagina acquisto
 @app.route('/form_acquisto.html')
 def mostra_pag_acquisto():
-    autore = session.get('username')
-    if not autore:
+    utente_loggato = session.get('username')
+    if not utente_loggato:
         return redirect("/form_login.html")
     
     id_opera_da_acquistare = request.args.get('id_opera')
-    return render_template("/form_acquisto.html", acquistato=False, id_opera=id_opera_da_acquistare)
+    provenienza_carrello = request.args.get('da_carrello') == 'true'
+    conn = get_connection_db()
+    opere_da_acquistare = []
+    if provenienza_carrello:
+        query = """
+            SELECT o.* from in_carrello ic JOIN opera o ON ic.id_opera=o.id
+            WHERE ic.id_utente = ? and o.disponibilita=1
+           """
+        opere_da_acquistare = conn.execute(query, (utente_loggato,)).fetchall()
+    elif id_opera_da_acquistare:
+        opera = conn.execute("SELECT * FROM opera WHERE id = ? AND disponibilita=1", (id_opera_da_acquistare,)).fetchone()
+        if opera:
+            opere_da_acquistare = [opera]
+    conn.close()
+    if not opere_da_acquistare:
+        return redirect("/vetrina.html")
+    totale = sum(float(op['prezzo']) for op in opere_da_acquistare)
+    
+    return render_template("/form_acquisto.html", 
+                           acquistato=False, 
+                           opere=opere_da_acquistare, 
+                           totale=totale,
+                           da_carrello=provenienza_carrello)
+    
 
 @app.route('/acquista', methods=["POST"])
 def acquista_opera():
     utente_loggato = session.get('username')
     if not utente_loggato:
         return redirect("/form_login.html")
-    
+    #carrello o acquisto diretto?
+    da_carrello = request.form.get('da_carrello') == 'true'
     id_opera = request.form.get('id_opera')
     indirizzo = request.form.get('indirizzo')
     numero_carta = request.form.get('numero_carta')
@@ -101,9 +125,23 @@ def acquista_opera():
 
     try:
         # salvo il prezzo in tabella ORDINE
-        opera = conn.execute("SELECT prezzo FROM opera WHERE id = ?", (id_opera,)).fetchone()
-        prezzo_opera = opera['prezzo']
         cursor = conn.cursor()
+        #opere da processare
+        if da_carrello:
+            opere = cursor.execute("""
+                SELECT o.id, o.prezzo FROM in_carrello ic JOIN opera o ON ic.id_opera=o.id
+                WHERE ic.id_utente = ? and o.disponibilita=1    
+            """, (utente_loggato,)).fetchall()
+        else:
+            res = cursor.execute("SELECT id, prezzo FROM opera WHERE id = ?", (id_opera,)).fetchone()
+            opere = [res] if res else []
+            prezzo_opera = res['prezzo'] if res else 0
+        if not opere:
+            raise Exception("Nessuna opera disponibile per l'acquisto")
+        
+        prezzo_totale_ordine = sum(float(op['prezzo']) for op in opere)
+
+
 
         # salvo l'indirizzo in INDIRIZZO
         cursor.execute(
@@ -126,21 +164,17 @@ def acquista_opera():
         data = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         cursor.execute(
             "INSERT INTO ordine (data, stato, totale, id_utente, id_indirizzo) VALUES (?, ?, ?, ?, ?)",
-            (data, "Completato", prezzo_opera, utente_loggato, id_indirizzo_generato)
+            (data, "Completato", prezzo_totale_ordine, utente_loggato, id_indirizzo_generato)
         )
         id_ordine_generato = cursor.lastrowid
 
-        #creo l'ordine dettagliato in ORDINE_OPERA
-        cursor.execute(
-            "INSERT INTO ordine_opera (id_ordine, id_opera, prezzo_acquisto) VALUES (?, ?, ?)",
-            (id_ordine_generato, id_opera, prezzo_opera)
-        )
-
-        # tolgo l'opera dalla vetrina
-        cursor.execute(
-            "UPDATE opera SET disponibilita=0 WHERE id=?",
-            (id_opera,)
-        )
+        #CICLO PER OGNI OPERA
+        for op in opere:
+            cursor.execute("INSERT INTO ordine_opera (id_ordine, id_opera, prezzo_acquisto) VALUES (?, ?, ?)",
+                           (id_ordine_generato, op['id'], op['prezzo']))
+            
+            # Settiamo a non disponibile
+            cursor.execute("UPDATE opera SET disponibilita=0 WHERE id=?", (op['id'],))
 
         conn.commit()
         esito_acquisto = True
