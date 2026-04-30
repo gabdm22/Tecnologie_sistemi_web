@@ -6,11 +6,8 @@ body{
     justify-content: center; 
     align-items: center;     
     min-height: 100vh;
-
-    padding-left: 35%;     
-    padding-right: 20px; 
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px;
+    box-sizing: border-box;
 
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/static/sfondo.jpg");
     background-size: cover;
