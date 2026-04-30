@@ -10,6 +10,7 @@
         <SCRIPT src="/static/lightbox.js" defer></SCRIPT>      <!--script per zoom immagine-->
         <SCRIPT src="/static/stampa_certificato.js" defer></SCRIPT> <!--script per la stampa del certificato di autenticità-->
         <SCRIPT src="/static/statistiche_collezione.js" defer></SCRIPT> <!--script per le statistiche sulla collezione-->
+        <SCRIPT src="/static/rimuovi_da_collezione.js" defer></SCRIPT>  <!--script per rimozione opera da collezione-->
     </HEAD>
 
     <BODY>
@@ -54,7 +55,11 @@
                                 <P>Autore: <b>{{acq['autore']}}</b></P>
                                 <P class="prezzo-pagato">Prezzo pagato: {{"%.2f"|format(acq['totale'])}}€</P>
                             </DIV>
-                            <BUTTON class="btn-certificato" onclick="stampaCertificato(`{{ acq['nome'] }}`, `{{ acq['autore'] }}`, `{{ acq['data'] }}`, `{{ acq['totale'] }}`)">Scarica certificato</BUTTON>
+
+                            <DIV class="box-bottoni">
+                                <BUTTON class="btn-certificato" onclick="stampaCertificato(`{{ acq['nome'] }}`, `{{ acq['autore'] }}`, `{{ acq['data'] }}`, `{{ acq['totale'] }}`)">Scarica certificato</BUTTON>
+                                <BUTTON class="btn-rimuovi" onclick="rimuoviDaCollezione(`{{ acq['id_ordine'] }}`, `{{ acq['nome'] }}`)">Rimuovi</BUTTON>
+                            </DIV>
                         </DIV>
                     {% endfor %}
                 </DIV>

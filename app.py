@@ -234,7 +234,7 @@ def mostra_profilo():
     conn = get_connection_db()
 
     query = """
-        SELECT o.data, o.totale, op.nome, op.immagine, op.autore
+        SELECT o.id_ordine, o.data, o.totale, op.nome, op.immagine, op.autore
         FROM ordine o JOIN ordine_opera oo on o.id_ordine=oo.id_ordine JOIN opera op ON oo.id_opera=op.id
         WHERE o.id_utente = ?
         ORDER BY o.data DESC
@@ -244,6 +244,16 @@ def mostra_profilo():
     conn.close()
     
     return render_template("profilo.html", acquisti=lista_acquisti)
+
+
+@app.route('/rimuovi/<int:id_acquisto>')
+def rimuovi_da_collezione(id_acquisto):
+    conn = get_connection_db()
+    conn.execute("DELETE FROM ordine WHERE id_ordine = ?", (id_acquisto,))
+    conn.commit()
+    conn.close()
+    return redirect("/profilo.html")
+
 
 
 #endpoint per testare se email o utente esistono già durante la registrazione
