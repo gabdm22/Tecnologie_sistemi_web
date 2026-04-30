@@ -148,6 +148,7 @@ body{
 }
 
 .card-acquisto{
+    position: relative;
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
@@ -199,6 +200,39 @@ body{
 }
 
 .prezzo-pagato{
+    margin-top: auto !important;
+    padding-top: 15px;
+    font-size: 1.3rem !important;
+    font-weight: 700;
+    color: #2e7d32 !important;
+    border-top: 1px solid #eeeeee;
+}
+
+/*------------ SEZIONE VENDITE ------------*/
+.divisore{
+    border: 0;
+    height: 2px;
+    background-color: #d4af37;
+    margin: 60px 0 40px 0;
+    width: 100%;
+}
+
+.badge-venduta{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #c0392b;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+    padding: 8px 15px;
+    border-radius: 20px;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.prezzo-pagato-vendita{
     margin-top: auto !important;
     padding-top: 15px;
     font-size: 1.3rem !important;
@@ -365,6 +399,25 @@ body{
         font-size: 1.5rem;
         margin-top: 10px;
     }
+}
+
+/*------------ RIMUOVI ------------*/
+.btn-rimuovi{
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #c0392b;
+    color: #f1f1f1;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    transition: 0.3s ease;
+}
+
+.btn-rimuovi:hover{
+    background-color: #922b21;
 }
 
 

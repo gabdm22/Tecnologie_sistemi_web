@@ -10,6 +10,8 @@
         <SCRIPT src="/static/lightbox.js" defer></SCRIPT>      <!--script per zoom immagine-->
         <SCRIPT src="/static/stampa_certificato.js" defer></SCRIPT> <!--script per la stampa del certificato di autenticità-->
         <SCRIPT src="/static/statistiche_collezione.js" defer></SCRIPT> <!--script per le statistiche sulla collezione-->
+        <SCRIPT src="/static/statistiche_vendite.js" defer></SCRIPT>    <!--script per le statistiche sulle vendite-->
+        <SCRIPT src="/static/rimuovi_da_collezione.js" defer></SCRIPT>  <!--script per rimozione opera da collezione-->
     </HEAD>
 
     <BODY>
@@ -54,7 +56,11 @@
                                 <P>Autore: <b>{{acq['autore']}}</b></P>
                                 <P class="prezzo-pagato">Prezzo pagato: {{"%.2f"|format(acq['totale'])}}€</P>
                             </DIV>
-                            <BUTTON class="btn-certificato" onclick="stampaCertificato(`{{ acq['nome'] }}`, `{{ acq['autore'] }}`, `{{ acq['data'] }}`, `{{ acq['totale'] }}`)">Scarica certificato</BUTTON>
+
+                            <DIV class="box-bottoni">
+                                <BUTTON class="btn-certificato" onclick="stampaCertificato(`{{ acq['nome'] }}`, `{{ acq['autore'] }}`, `{{ acq['data'] }}`, `{{ acq['totale'] }}`)">Scarica certificato</BUTTON>
+                                <BUTTON class="btn-rimuovi" onclick="rimuoviDaCollezione(`{{ acq['id_ordine'] }}`, `{{ acq['nome'] }}`)">Rimuovi</BUTTON>
+                            </DIV>
                         </DIV>
                     {% endfor %}
                 </DIV>
@@ -66,7 +72,50 @@
                     <A href="/vetrina.html" class="link-vetrina">Vai alla vetrina</A>
                 </DIV>
             {% endif %}
+
+
+            <HR class="divisore">
+            <H1>Le mie vendite</H1>
+            <P>Qui trovi le opere da te vendute</P>
+
+            <DIV class="stats-box">
+                <DIV class="stat-item">
+                    <SPAN class="label">Incasso totale dalle vendite</SPAN>
+                    <SPAN id="totale-vendite" class="value">0.00€</SPAN>
+                </DIV>
+                <DIV class="stat-item">
+                    <SPAN class="label">Opere vendute</SPAN>
+                    <SPAN id="numero-opere-vendute" class="value">0</SPAN>
+                </DIV>
+            </DIV>
+
+            <!-- SEZIONE VENDITE -->
+             {% if vendite %}
+                <DIV class="acquisti">
+                    {% for ven in vendite %}
+                        <DIV class="card-acquisto">
+                            <IMG src="/static/uploads/{{ven['immagine']}}" class="immagine_opera" alt="{{ven['nome']}}">
+                            <DIV>
+                                <P class="data-ordine">Venduto il: {{ven['data']}}</P>
+                                <H2>{{ven['nome']}}</H2>
+                                <P>Autore: <b>{{ven['autore']}}</b></P>
+                                <P class="prezzo-pagato-vendita">Guadagno: {{"%.2f"|format(ven['prezzo'])}}€</P>
+                            </DIV>
+                            <DIV class="badge-venduta">VENDUTA</DIV>
+                        </DIV>
+                    {% endfor %}
+                </DIV>
+             {% else %}
+                <DIV class="collezione-vuota">
+                    <H2>Nessuna vendita effettuata per ora</H2>
+                    <P>Le opere da te vendute saranno mostrate in questa sezione</P>
+                </DIV>
+             {% endif %}
         </MAIN>
+
+
+
+
 
         <FOOTER>        <!--Piè di pagina per copyright e firma-->
             <P>&copy;2026 MoVA - Museum of Virtual Art. Created by Nicolò Carbone and Gabriele Di Martino</P>

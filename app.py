@@ -267,17 +267,35 @@ def mostra_profilo():
     
     conn = get_connection_db()
 
-    query = """
-        SELECT o.data, o.totale, op.nome, op.immagine, op.autore
+    query_acquisti = """
+        SELECT o.id_ordine, o.data, o.totale, op.nome, op.immagine, op.autore
         FROM ordine o JOIN ordine_opera oo on o.id_ordine=oo.id_ordine JOIN opera op ON oo.id_opera=op.id
         WHERE o.id_utente = ?
         ORDER BY o.data DESC
     """
 
-    lista_acquisti = conn.execute(query, (utente_loggato,)).fetchall()
+    query_vendite = """
+        SELECT op.nome, op.immagine, op.autore, op.prezzo, o.data
+        FROM opera op JOIN ordine_opera oo ON op.id=oo.id_opera JOIN ordine o ON oo.id_ordine=o.id_ordine
+        WHERE op.autore = ?
+        ORDER BY o.data DESC
+    """
+
+    lista_acquisti = conn.execute(query_acquisti, (utente_loggato,)).fetchall()
+    lista_vendite = conn.execute(query_vendite, (utente_loggato,)).fetchall()
     conn.close()
     
-    return render_template("profilo.html", acquisti=lista_acquisti)
+    return render_template("profilo.html", acquisti=lista_acquisti, vendite=lista_vendite)
+
+
+@app.route('/rimuovi/<int:id_acquisto>')
+def rimuovi_da_collezione(id_acquisto):
+    conn = get_connection_db()
+    conn.execute("DELETE FROM ordine WHERE id_ordine = ?", (id_acquisto,))
+    conn.commit()
+    conn.close()
+    return redirect("/profilo.html")
+
 
 
 #endpoint per testare se email o utente esistono già durante la registrazione
