@@ -24,6 +24,9 @@ def get_connection_db():
 def home():
     return render_template('welcome.html')
 
+
+
+# -------------------------------- VETRINA -------------------------------------
 # -----------------------------------------------------------------------
 
 # vetrina
@@ -32,7 +35,7 @@ def mostra_vetrina():
     conn = get_connection_db()
     opere_carrello = []
     utente_loggato = session.get('username')
-    
+
     if utente_loggato:
         opere_db = conn.execute("SELECT * FROM opera WHERE autore!=?", (utente_loggato,)).fetchall()
 
@@ -46,6 +49,9 @@ def mostra_vetrina():
 
     return render_template("vetrina.html", opere=opere_db, in_carrello=opere_carrello)
 
+
+
+# --------------------------------- VENDITA -------------------------------------
 # -----------------------------------------------------------------------
 
 # pagina vendita
@@ -85,6 +91,8 @@ def carica_opera():
     else:
         return render_template("/form_vendita.html", caricato=False)
 
+
+# ------------------------------ ACQUISTO E CARRELLO ----------------------------------------
 # -----------------------------------------------------------------------
 
 # pagina acquisto
@@ -198,132 +206,7 @@ def acquista_opera():
     conn.close()
     return render_template("/form_acquisto.html", acquistato=esito_acquisto)
 
-
 # -----------------------------------------------------------------------
-
-# pagina registrazione
-@app.route('/form_registrazione.html')
-def registra():
-    return render_template("form_registrazione.html")
-
-# registrazione
-@app.route('/registrazione', methods=["POST"])
-def registazione():
-    nome = request.form["nome"]
-    cognome = request.form["cognome"]
-    username = request.form["username"]
-    email = request.form["email"]
-    password = request.form["password"]
-    verifica_password = request.form["verifica_password"]
-    if not all([nome, cognome, username, email, password, verifica_password]):
-        return "ERRORE! tutti i campi sono obbligatori",400
-    if password != verifica_password:
-        return "ERRORE! le password non coincidono",400
-    if len(password) < 8:
-        return "ERRORE! la password deve essere lunga almeno 8 caratteri",400
-    if not (any(c.isupper() for c in password) and any(c.islower() for c in password) and any(c.isdigit() for c in password)):
-        return "ERRORE! la password deve contenere almeno una lettera maiuscola, una lettera minuscola e un numero",400
-    
-    conn = get_connection_db()
-    # Controlla se l'username esiste già
-    utente_esistente = conn.execute("SELECT * FROM utente WHERE username = ?", (username,)).fetchone()
-    if utente_esistente:
-        conn.close()
-        return "ERRORE! username già esistente",400
-    # Controlla se l'email esiste già
-    email_esistente = conn.execute("SELECT * FROM utente WHERE email = ?", (email,)).fetchone()
-    if email_esistente:
-        conn.close()
-        return "ERRORE! email già esistente",400
-    #genera hash della password e salva utente
-    password_hash = generate_password_hash(password)
-    conn.execute("INSERT INTO utente (nome, cognome, username, email, password) VALUES (?, ?, ?, ?, ?)", (nome, cognome, username, email, password_hash))
-    conn.commit()
-    conn.close()
-    return redirect("/vetrina.html")
-# -----------------------------------------------------------------------
-#pagina login
-@app.route("/form_login.html")
-def login():
-    return render_template("form_login.html")
-#login 
-@app.route("/login", methods=["POST"])
-def effettua_login():
-    username = request.form["username"]
-    password = request.form["password"]
-    conn = get_connection_db()
-    utente = conn.execute("SELECT * FROM utente WHERE username = ?", (username,)).fetchone()
-    conn.close()
-    if utente and check_password_hash(utente['password'],password):
-        # session['utente_id'] = utente['id']
-        session['username'] = utente['username']
-        return jsonify({"success": True, "redirect": "/vetrina.html"}), 200
-    else:
-        return jsonify({"success": False, "message": "username o password errati"}), 401
-
-            
-# logout
-@app.route('/logout')
-def logout():
-    session.pop('username', None)
-    return redirect('/vetrina.html')
-
-
-# profilo
-@app.route('/profilo.html')
-def mostra_profilo():
-    utente_loggato = session.get('username')
-    if not utente_loggato:
-        return redirect("/form_login.html")
-    
-    conn = get_connection_db()
-
-    query_acquisti = """
-        SELECT o.id_ordine, op.id AS id_opera, o.data, oo.prezzo_acquisto AS prezzo, op.nome, op.immagine, op.autore
-        FROM ordine o JOIN ordine_opera oo on o.id_ordine=oo.id_ordine JOIN opera op ON oo.id_opera=op.id
-        WHERE o.id_utente = ? AND IFNULL(oo.rimosso, 0)=0
-        ORDER BY o.data DESC
-    """
-
-    query_vendite = """
-        SELECT op.nome, op.immagine, op.autore, oo.prezzo_acquisto AS prezzo, o.data
-        FROM opera op JOIN ordine_opera oo ON op.id=oo.id_opera JOIN ordine o ON oo.id_ordine=o.id_ordine
-        WHERE op.autore = ?
-        ORDER BY o.data DESC
-    """
-
-    lista_acquisti = conn.execute(query_acquisti, (utente_loggato,)).fetchall()
-    lista_vendite = conn.execute(query_vendite, (utente_loggato,)).fetchall()
-    conn.close()
-    
-    return render_template("profilo.html", acquisti=lista_acquisti, vendite=lista_vendite)
-
-
-@app.route('/rimuovi/<int:id_ordine>/<int:id_opera>')
-def rimuovi_da_collezione(id_ordine, id_opera):
-    conn = get_connection_db()
-    conn.execute("UPDATE ordine_opera SET rimosso=1 WHERE id_ordine=? AND id_opera=?", (id_ordine, id_opera))
-    conn.commit()
-    conn.close()
-    return redirect("/profilo.html")
-
-
-
-#endpoint per testare se email o utente esistono già durante la registrazione
-@app.route('/verifica-unicita', methods=['POST'])
-def verifica_unicita():
-    data = request.get_json()
-    campo = data.get('campo')
-    valore = data.get('valore')
-    if campo not in ['username', 'email']:
-        return jsonify({"errore": "Campo non valido"}), 400
-    conn = get_connection_db()
-    #basta una riga 
-    query = f"SELECT 1 FROM utente WHERE {campo} = ?"
-    #controllo 
-    risultato = conn.execute(query, (valore,)).fetchone()
-    conn.close()
-    return jsonify({"disponibile": risultato is None})
 
 #pagina carrello
 @app.route('/carrello.html')
@@ -369,6 +252,148 @@ def rimuovi_dal_carrello(id_opera):
     conn.commit()
     conn.close()
     return redirect(url_for('mostra_carrello'))
+
+
+
+
+# -----------------------------AUTENTICAZIONE E PROFILO -----------------------------------------
+# -----------------------------------------------------------------------
+
+# pagina registrazione
+@app.route('/form_registrazione.html')
+def registra():
+    return render_template("form_registrazione.html")
+
+# registrazione
+@app.route('/registrazione', methods=["POST"])
+def registazione():
+    nome = request.form["nome"]
+    cognome = request.form["cognome"]
+    username = request.form["username"]
+    email = request.form["email"]
+    password = request.form["password"]
+    verifica_password = request.form["verifica_password"]
+    if not all([nome, cognome, username, email, password, verifica_password]):
+        return "ERRORE! tutti i campi sono obbligatori",400
+    if password != verifica_password:
+        return "ERRORE! le password non coincidono",400
+    if len(password) < 8:
+        return "ERRORE! la password deve essere lunga almeno 8 caratteri",400
+    if not (any(c.isupper() for c in password) and any(c.islower() for c in password) and any(c.isdigit() for c in password)):
+        return "ERRORE! la password deve contenere almeno una lettera maiuscola, una lettera minuscola e un numero",400
+    
+    conn = get_connection_db()
+    # Controlla se l'username esiste già
+    utente_esistente = conn.execute("SELECT * FROM utente WHERE username = ?", (username,)).fetchone()
+    if utente_esistente:
+        conn.close()
+        return "ERRORE! username già esistente",400
+    # Controlla se l'email esiste già
+    email_esistente = conn.execute("SELECT * FROM utente WHERE email = ?", (email,)).fetchone()
+    if email_esistente:
+        conn.close()
+        return "ERRORE! email già esistente",400
+    #genera hash della password e salva utente
+    password_hash = generate_password_hash(password)
+    conn.execute("INSERT INTO utente (nome, cognome, username, email, password) VALUES (?, ?, ?, ?, ?)", (nome, cognome, username, email, password_hash))
+    conn.commit()
+    conn.close()
+    return redirect("/vetrina.html")
+
+
+#endpoint per testare se email o utente esistono già durante la registrazione
+@app.route('/verifica-unicita', methods=['POST'])
+def verifica_unicita():
+    data = request.get_json()
+    campo = data.get('campo')
+    valore = data.get('valore')
+    if campo not in ['username', 'email']:
+        return jsonify({"errore": "Campo non valido"}), 400
+    conn = get_connection_db()
+    #basta una riga 
+    query = f"SELECT 1 FROM utente WHERE {campo} = ?"
+    #controllo 
+    risultato = conn.execute(query, (valore,)).fetchone()
+    conn.close()
+    return jsonify({"disponibile": risultato is None})
+
+
+# -----------------------------------------------------------------------
+
+#pagina login
+@app.route("/form_login.html")
+def login():
+    return render_template("form_login.html")
+#login 
+@app.route("/login", methods=["POST"])
+def effettua_login():
+    username = request.form["username"]
+    password = request.form["password"]
+    conn = get_connection_db()
+    utente = conn.execute("SELECT * FROM utente WHERE username = ?", (username,)).fetchone()
+    conn.close()
+    if utente and check_password_hash(utente['password'],password):
+        # session['utente_id'] = utente['id']
+        session['username'] = utente['username']
+        return jsonify({"success": True, "redirect": "/vetrina.html"}), 200
+    else:
+        return jsonify({"success": False, "message": "username o password errati"}), 401
+
+
+# -----------------------------------------------------------------------
+            
+# logout
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect('/vetrina.html')
+
+
+# -----------------------------------------------------------------------
+
+# profilo
+@app.route('/profilo.html')
+def mostra_profilo():
+    utente_loggato = session.get('username')
+    if not utente_loggato:
+        return redirect("/form_login.html")
+    
+    conn = get_connection_db()
+
+    query_acquisti = """
+        SELECT o.id_ordine, op.id AS id_opera, o.data, oo.prezzo_acquisto AS prezzo, op.nome, op.immagine, op.autore
+        FROM ordine o JOIN ordine_opera oo on o.id_ordine=oo.id_ordine JOIN opera op ON oo.id_opera=op.id
+        WHERE o.id_utente = ? AND IFNULL(oo.rimosso, 0)=0
+        ORDER BY o.data DESC
+    """
+
+    query_vendite = """
+        SELECT op.nome, op.immagine, op.autore, oo.prezzo_acquisto AS prezzo, o.data
+        FROM opera op JOIN ordine_opera oo ON op.id=oo.id_opera JOIN ordine o ON oo.id_ordine=o.id_ordine
+        WHERE op.autore = ?
+        ORDER BY o.data DESC
+    """
+
+    lista_acquisti = conn.execute(query_acquisti, (utente_loggato,)).fetchall()
+    lista_vendite = conn.execute(query_vendite, (utente_loggato,)).fetchall()
+    conn.close()
+    
+    return render_template("profilo.html", acquisti=lista_acquisti, vendite=lista_vendite)
+
+
+@app.route('/rimuovi/<int:id_ordine>/<int:id_opera>')
+def rimuovi_da_collezione(id_ordine, id_opera):
+    conn = get_connection_db()
+    conn.execute("UPDATE ordine_opera SET rimosso=1 WHERE id_ordine=? AND id_opera=?", (id_ordine, id_opera))
+    conn.commit()
+    conn.close()
+    return redirect("/profilo.html")
+
+
+
+
+# ------------------------------ ASSISTENZA ----------------------------------------
+# -----------------------------------------------------------------------
 
 # pagina assistenza
 @app.route('/form_assistenza.html', methods=['GET', 'POST'])
