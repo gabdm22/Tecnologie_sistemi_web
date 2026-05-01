@@ -371,6 +371,15 @@ footer{
         text-align: center;
     }
 
+    .navbar .menu a.user{
+        display: inline-block;
+        margin-right: 0;
+        margin-bottom: 15px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        width: fit-content;
+    }
 
     .contenitore-ricerca{
         flex-direction: column;
