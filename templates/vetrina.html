@@ -67,9 +67,13 @@
                             <A href="{{ url_for('mostra_pag_acquisto', id_opera=op['id']) }}">
                                 <BUTTON class="button_acquista">Acquista</BUTTON>
                             </A>
+                            {% if op['id'] in in_carrello %}
+                                <BUTTON class="btn-in-carrello">In carrello</BUTTON>
+                            {% else %}
                             <A href="{{ url_for('aggiungi_al_carrello', id_opera=op['id']) }}">
                                 <BUTTON class="button_acquista">Aggiungi al carrello</BUTTON>
                             </A>
+                            {% endif %}
                         </DIV>
                     </DIV>
 

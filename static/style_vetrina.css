@@ -253,6 +253,17 @@ body{
     cursor: not-allowed;
 }
 
+.btn-in-carrello{
+    padding: 10px 15px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    cursor: not-allowed;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
 footer{
     text-align: center;
     padding: 30px 20px;
