@@ -76,6 +76,7 @@ cursor.execute('''
         id_ordine INTEGER NOT NULL,
         id_opera INTEGER NOT NULL,
         prezzo_acquisto REAL NOT NULL,
+        rimosso INTEGER DEFAULT 0,
         PRIMARY KEY (id_ordine, id_opera),
         FOREIGN KEY (id_ordine) REFERENCES ordine(id_ordine),
         FOREIGN KEY (id_opera) REFERENCES opera(id)

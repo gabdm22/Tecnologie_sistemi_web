@@ -268,14 +268,14 @@ def mostra_profilo():
     conn = get_connection_db()
 
     query_acquisti = """
-        SELECT o.id_ordine, op.id AS id_opera, o.data, op.prezzo, op.nome, op.immagine, op.autore
+        SELECT o.id_ordine, op.id AS id_opera, o.data, oo.prezzo_acquisto AS prezzo, op.nome, op.immagine, op.autore
         FROM ordine o JOIN ordine_opera oo on o.id_ordine=oo.id_ordine JOIN opera op ON oo.id_opera=op.id
-        WHERE o.id_utente = ?
+        WHERE o.id_utente = ? AND IFNULL(oo.rimosso, 0)=0
         ORDER BY o.data DESC
     """
 
     query_vendite = """
-        SELECT op.nome, op.immagine, op.autore, op.prezzo, o.data
+        SELECT op.nome, op.immagine, op.autore, oo.prezzo_acquisto AS prezzo, o.data
         FROM opera op JOIN ordine_opera oo ON op.id=oo.id_opera JOIN ordine o ON oo.id_ordine=o.id_ordine
         WHERE op.autore = ?
         ORDER BY o.data DESC
@@ -291,7 +291,7 @@ def mostra_profilo():
 @app.route('/rimuovi/<int:id_ordine>/<int:id_opera>')
 def rimuovi_da_collezione(id_ordine, id_opera):
     conn = get_connection_db()
-    conn.execute("DELETE FROM ordine_opera WHERE id_ordine=? AND id_opera=?", (id_ordine, id_opera))
+    conn.execute("UPDATE ordine_opera SET rimosso=1 WHERE id_ordine=? AND id_opera=?", (id_ordine, id_opera))
     conn.commit()
     conn.close()
     return redirect("/profilo.html")
