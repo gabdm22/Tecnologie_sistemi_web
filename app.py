@@ -30,14 +30,18 @@ def home():
 @app.route('/vetrina.html')
 def mostra_vetrina():
     conn = get_connection_db()
-    opere_db = conn.execute("SELECT * FROM opera").fetchall()
-
+    opere_carrello = []
     utente_loggato = session.get('username')
+    
     if utente_loggato:
+        opere_db = conn.execute("SELECT * FROM opera WHERE autore!=?", (utente_loggato,)).fetchall()
+
         carrello = conn.execute("SELECT id_opera FROM in_carrello WHERE id_utente=?", (utente_loggato,)).fetchall()
-        opere_carrello = []
         for elem in carrello:
             opere_carrello.append(elem['id_opera'])
+    else:
+        opere_db = conn.execute("SELECT * FROM opera").fetchall()
+    
     conn.close()
 
     return render_template("vetrina.html", opere=opere_db, in_carrello=opere_carrello)
