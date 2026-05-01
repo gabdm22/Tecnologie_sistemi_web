@@ -421,9 +421,24 @@ footer{
         border-radius: 8px;
     }
 
-    .button_acquista{
+    .azioni-acquisto{
+        display: block;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .azioni-acquisto a{
+        display: block;
+        width: 100%;
+        text-decoration: none;
+    }
+
+    .button_acquista, .btn-in-carrello{
+        display: block;
         width: 100%;
         margin-top: 10px;
-        padding: 15px;
+        box-sizing: border-box;
     }
 }

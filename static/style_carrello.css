@@ -129,3 +129,33 @@ footer{
     font-size: 0.8rem;
 }
 
+
+
+@media (max-width: 768px){
+    .carrello-container{
+        width: 95%;
+        padding: 20px 15px;
+    }
+
+    .carrello-table th, .carrello-table td{
+        padding: 10px 5px;
+        font-size: 0.9rem;
+    }
+
+    .btn-rimuovi{
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .btn-continua, .btn-procedi{
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+    .carello-totale{
+        text-align: center;
+        padding-top: 15px;
+    }
+}
