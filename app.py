@@ -268,7 +268,7 @@ def mostra_profilo():
     conn = get_connection_db()
 
     query_acquisti = """
-        SELECT o.id_ordine, o.data, o.totale, op.nome, op.immagine, op.autore
+        SELECT o.id_ordine, op.id AS id_opera, o.data, op.prezzo, op.nome, op.immagine, op.autore
         FROM ordine o JOIN ordine_opera oo on o.id_ordine=oo.id_ordine JOIN opera op ON oo.id_opera=op.id
         WHERE o.id_utente = ?
         ORDER BY o.data DESC
@@ -288,10 +288,10 @@ def mostra_profilo():
     return render_template("profilo.html", acquisti=lista_acquisti, vendite=lista_vendite)
 
 
-@app.route('/rimuovi/<int:id_acquisto>')
-def rimuovi_da_collezione(id_acquisto):
+@app.route('/rimuovi/<int:id_ordine>/<int:id_opera>')
+def rimuovi_da_collezione(id_ordine, id_opera):
     conn = get_connection_db()
-    conn.execute("DELETE FROM ordine WHERE id_ordine = ?", (id_acquisto,))
+    conn.execute("DELETE FROM ordine_opera WHERE id_ordine=? AND id_opera=?", (id_ordine, id_opera))
     conn.commit()
     conn.close()
     return redirect("/profilo.html")

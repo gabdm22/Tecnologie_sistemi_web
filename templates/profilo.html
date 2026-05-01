@@ -54,12 +54,12 @@
                                 <P class="data-ordine">Acquistato il: {{acq['data']}}</P>
                                 <H2>{{acq['nome']}}</H2>
                                 <P>Autore: <b>{{acq['autore']}}</b></P>
-                                <P class="prezzo-pagato">Prezzo pagato: {{"%.2f"|format(acq['totale'])}}€</P>
+                                <P class="prezzo-pagato">Prezzo pagato: {{"%.2f"|format(acq['prezzo'])}}€</P>
                             </DIV>
 
                             <DIV class="box-bottoni">
-                                <BUTTON class="btn-certificato" onclick="stampaCertificato(`{{ acq['nome'] }}`, `{{ acq['autore'] }}`, `{{ acq['data'] }}`, `{{ acq['totale'] }}`)">Scarica certificato</BUTTON>
-                                <BUTTON class="btn-rimuovi" onclick="rimuoviDaCollezione(`{{ acq['id_ordine'] }}`, `{{ acq['nome'] }}`)">Rimuovi</BUTTON>
+                                <BUTTON class="btn-certificato" onclick="stampaCertificato(`{{ acq['nome'] }}`, `{{ acq['autore'] }}`, `{{ acq['data'] }}`, `{{ acq['prezzo'] }}`)">Scarica certificato</BUTTON>
+                                <BUTTON class="btn-rimuovi" onclick="rimuoviDaCollezione(`{{ acq['id_ordine'] }}`, `{{ acq['id_opera'] }}`, `{{acq['nome']}}`)">Rimuovi</BUTTON>
                             </DIV>
                         </DIV>
                     {% endfor %}
