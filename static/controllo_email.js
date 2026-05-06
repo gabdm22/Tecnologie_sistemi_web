@@ -17,9 +17,11 @@ function attivaControllo(idInput, nomeColonna) {
                 if (data.disponibile) {
                     feedback.textContent = "✅ Disponibile";
                     feedback.style.color = "green";
+                    feedback.className = "feedback-text disponibile"; // Aggiungi la classe CSS
                 } else {
                     feedback.textContent = "❌ Già in uso";
                     feedback.style.color = "red";
+                    feedback.className = "feedback-text errore"; // Aggiungi la classe CSS
                 }
             });
         }
