@@ -112,6 +112,37 @@ input[type="password"]{
     font-size: 0.9em;
     /* display: none;  <-- gestito da JS */
 }
+.password-wrapper {
+    position: relative;
+    display: block; 
+    width: 100%;
+    margin-bottom: 20px; 
+}
+
+.password-wrapper input {
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 40px;
+    margin-bottom: 0 ;
+}
+
+.toggle-password {
+    position: absolute; /* Posizione assoluta per posizionare l'icona all'interno del campo di input */
+    right: 10px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; 
+    z-index: 10; 
+}
+
+.toggle-password img {
+    display: block;
+    width: 18px; 
+    height: auto;
+}
 
 
 /*MEDIA QUERY*/

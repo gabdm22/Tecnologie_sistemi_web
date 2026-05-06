@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accedi al tuo account MoVA</title>
     <link rel="stylesheet" href="/static/style_form_login.css">
+    <SCRIPT src="/static/controllo_password.js" defer></SCRIPT>    <!-- script per controllo requisiti password -->
 </head>
 <body>
     <div class="login-container">
@@ -18,8 +19,12 @@
                 <input type="text" id="username" name="username" required>
 
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-
+                <div class = "password-wrapper">
+                    <input type="password" id="password" name="password" >
+                    <span class="toggle-password" onclick="toggleVisibility('password', this)">
+                        <img src="/static/occhio.svg" alt="Mostra/Nascondi" width="20">
+                    </span>
+                </div>  
                 <button id="login-btn" type="submit">Login</button>
             </form>
 
