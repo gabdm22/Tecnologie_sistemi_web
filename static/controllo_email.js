@@ -15,13 +15,11 @@ function attivaControllo(idInput, nomeColonna) {
             .then(res => res.json()) 
             .then(data => { 
                 if (data.disponibile) {
-                    feedback.textContent = "✅ Disponibile";
-                    feedback.style.color = "green";
-                    feedback.className = "feedback-text disponibile"; // Aggiungi la classe CSS
+                    feedback.textContent = "✅ Disponibile"; 
+                    feedback.className = "feedback-text disponibile"; // classe css
                 } else {
                     feedback.textContent = "❌ Già in uso";
-                    feedback.style.color = "red";
-                    feedback.className = "feedback-text errore"; // Aggiungi la classe CSS
+                    feedback.className = "feedback-text errore"; 
                 }
             });
         }
