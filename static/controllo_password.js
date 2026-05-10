@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', function(){
             reg_btn.style.cursor = 'not-allowed';
         } else {
             avviso.style.display = 'none';
+            /*reg_btn.disabled = false;
+            reg_btn.style.opacity = '1';
+            reg_btn.style.cursor = 'pointer';*/
         }
     });
 });

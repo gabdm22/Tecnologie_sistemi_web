@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 pass2.classList.remove('input-errore');
                 pass2.classList.add('input-successo');
                 messaggio.style.display = 'none';
+                /*btn_reg.disabled = false;
+                btn_reg.style.cursor = 'pointer';
+                btn_reg.style.opacity = '1';*/
             }
             else{
                 pass2.classList.remove('input-successo');
