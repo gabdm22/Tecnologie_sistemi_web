@@ -7,12 +7,12 @@ form.addEventListener('submit', async (e) => {
     const formData = new FormData(form);
     
     // Invio asincrono
-    const response = await fetch('/login', {
+    const response = await fetch('/login', {  //chimata al server per il login
         method: 'POST',
         body: formData
     });
 
-    const data = await response.json();
+    const data = await response.json(); 
 
     if (data.success) {
         // Se il login è OK, reindirizziamo manualmente
@@ -21,6 +21,6 @@ form.addEventListener('submit', async (e) => {
         // Se c'è un errore, lo mostriamo dinamicamente
         errorBox.textContent = data.message;
         errorBox.style.display = 'block';
-        document.querySelector('input[name="password"]').value = '';
+        document.querySelector('input[name="password"]').value = ''; // Pulisce il campo password
     }
 });
