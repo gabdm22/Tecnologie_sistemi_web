@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function(){
         let pieni = true;
 
         input.forEach(i=>{
-            if(i.value.trim==''){
+            if(i.value.trim() ===''){
                 pieni = false;
             }
         });
