@@ -316,14 +316,16 @@ body{
     }
 
     @page{
-        size: A4;
+        size: A4 portrait;
         margin: 0;
     }
 
-    body {
+    html, body {
         margin: 0;
         padding: 0;
         background-color: #fff;
+        width: 210mm;
+        height: 297mm;  /*altezza esatta foglio A4*/
     }
 
     #certificato-stampa, #certificato-stampa *{
@@ -332,12 +334,8 @@ body{
 
     #certificato-stampa{
         display: block !important;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        width: 100vw;
-        height: 100vh;
+        width: 210mm;
+        height: 297mm;
         box-sizing: border-box;
         background: #fff;
         padding: 2cm;

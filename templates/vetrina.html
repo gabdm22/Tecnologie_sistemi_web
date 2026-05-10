@@ -18,23 +18,26 @@
             <DIV class="hamburger" id="hamburger">☰</DIV>
 
             <DIV class="menu" id="menu">
-                {% if 'username' in session %}    
+                {% if 'username' in session %}
+                    <!--UTENTE LOGGATO-->
                     <A href="{{ url_for('mostra_profilo') }}" class="user">Ciao, <b>{{session['username']}}</b>!</A>
                     <A href="{{ url_for('vendi') }}">Vendi</A>
                     <A href="{{ url_for('mostra_carrello') }}">Carrello</A>
                     <A href="{{ url_for('assistenza') }}">Assistenza</A>
                     <A href="{{ url_for('logout') }}">Logout</A>
                 {% else %}
+                    <!--GUEST-->
                     <A href="{{ url_for('login') }}">Accedi</A>
                     <A href="{{ url_for('registra') }}">Registrati</A>
-                    <A href="{{ url_for('assistenza') }}">Assistenza</A>
                 {% endif %}
             </DIV>
         </NAV>
 
         <DIV class="contenitore-ricerca">
+            <!--RICERCA TESTUALE-->
             <INPUT id="barra-ricerca" type="text" placeholder="Cerca...">
             
+            <!--FILTRO PER CATEGORIA-->
             <SELECT id="filtro-categoria" class="tendina-categoria">
                 <OPTION value="tutte" selected>Tutte le categorie</OPTION>
                 <OPTION value="pittura">Pittura</OPTION>
@@ -61,7 +64,6 @@
                             <P class="dettaglio"><b>Dimensioni: </b>{{op['dimensioni']}}</P>
                         {% endif %}
                         
-                        <!--<P class="flag_disponibilita disponibile">Disponibile</P>-->
                         
                         <DIV class="azioni-acquisto">
                             <A href="{{ url_for('mostra_pag_acquisto', id_opera=op['id']) }}">
