@@ -16,59 +16,58 @@
     <div class="registrazione-container">
         
         {% if registrato %}
-        <div class="FORM">
-            <h1 class="successo-titolo">REGISTRAZIONE AVVENUTA CON SUCCESSO</h1>
-            <p class="successo-testo">Sei ufficialmente registrato al MoVA</p>
-            
-            <P class="contenitore-link">
-                <A href="/vetrina.html" class="link-successo">Torna alla vetrina</A>
-                <SPAN class="separatore">|</SPAN>
-                <A href="/form_login.html" class="link-successo">Accedi</A>
-            </P>
-        </div>
-
-        {% else %}
-        <div class="FORM">              <!--Inserisce dati in entità "utente"-->
-            <h1 id = "titolo-registrazione">REGISTRAZIONE</h1>
-            <form action="/registrazione" method="post">
-                <label for="Nome">Nome:</label>
-                <input type="text" id="Nome" name="nome">
-                <label for="Cognome">Cognome:</label>
-                <input type="text" id="Cognome" name="cognome">
-                <label for="username">Username:</label>
-                <input type="text" id="Username" name="username">
-                <span id="Username-feedback" class = "feedback"></span>
-                <label for="email">Email:</label>
-                <input type="email" id="Email" name="email">
-                <span id="Email-feedback" class = "feedback"></span>
-                    <label for="password">Password:</label>
-                    <div class = "password-wrapper">
-                        <input type = "password" id = "pass1" name = "password">
-                        <span class = "toggle-password" onclick=" toggleVisibility('pass1',this)">
-                            <img src="/static/occhio.svg" alt="Mostra/Nascondi" width="20">
-                        </span>
-                    </div>
-                    <div id="avviso-password" class="feedback-password" style="display: none;">  
-                        La password deve avere: min 8 caratteri di cui 1 maiuscola, 1 minuscola, 1 numero  
-                     </div>
-                    <label for="confirm_password">Verifica Password:</label>
-                    <div class = "password-wrapper">
-                        <input type="password" id="pass2" name="verifica_password">
-                        <span class = "toggle-password" onclick=" toggleVisibility('pass2',this)">
-                            <img src="/static/occhio.svg" alt="Mostra/Nascondi" width="20">
-                        </span>
-                    </div>
-                    <div class="feedback-password" id="messaggio" style="display: none;"> 
-                        Le password non corrispondono! 
-                    </div>
-                    <button id = "registrazione-btn" type="submit">Registrati</button>
-                </form>
-
-            <div class="login-link"> 
-                <h5 class="divider-text">Hai già un account MoVA?</h5>
-                <a href="form_login.html" class="btn-mova">Accedi al tuo account MoVA</a>
+            <div class="FORM">
+                <h1 class="successo-titolo">REGISTRAZIONE AVVENUTA CON SUCCESSO</h1>
+                <p class="successo-testo">Sei ufficialmente registrato al MoVA</p>
+                
+                <P class="contenitore-link">
+                    <A href="/vetrina.html" class="link-successo">Torna alla vetrina</A>
+                    <SPAN class="separatore">|</SPAN>
+                    <A href="/form_login.html" class="link-successo">Accedi</A>
+                </P>
             </div>
-        </div>
+        {% else %}
+            <div class="FORM">              <!--Inserisce dati in entità "utente"-->
+                <h1 id = "titolo-registrazione">REGISTRAZIONE</h1>
+                <form action="/registrazione" method="post">
+                    <label for="Nome">Nome:</label>
+                    <input type="text" id="Nome" name="nome">
+                    <label for="Cognome">Cognome:</label>
+                    <input type="text" id="Cognome" name="cognome">
+                    <label for="username">Username:</label>
+                    <input type="text" id="Username" name="username">
+                    <span id="Username-feedback" class = "feedback"></span>
+                    <label for="email">Email:</label>
+                    <input type="email" id="Email" name="email">
+                    <span id="Email-feedback" class = "feedback"></span>
+                        <label for="password">Password:</label>
+                        <div class = "password-wrapper">
+                            <input type = "password" id = "pass1" name = "password">
+                            <span class = "toggle-password" onclick=" toggleVisibility('pass1',this)">
+                                <img src="/static/occhio.svg" alt="Mostra/Nascondi" width="20">
+                            </span>
+                        </div>
+                        <div id="avviso-password" class="feedback-password" style="display: none;">  
+                            La password deve avere: min 8 caratteri di cui 1 maiuscola, 1 minuscola, 1 numero  
+                        </div>
+                        <label for="confirm_password">Verifica Password:</label>
+                        <div class = "password-wrapper">
+                            <input type="password" id="pass2" name="verifica_password">
+                            <span class = "toggle-password" onclick=" toggleVisibility('pass2',this)">
+                                <img src="/static/occhio.svg" alt="Mostra/Nascondi" width="20">
+                            </span>
+                        </div>
+                        <div class="feedback-password" id="messaggio" style="display: none;"> 
+                            Le password non corrispondono! 
+                        </div>
+                        <button id = "registrazione-btn" type="submit">Registrati</button>
+                    </form>
+
+                <div class="login-link"> 
+                    <h5 class="divider-text">Hai già un account MoVA?</h5>
+                    <a href="form_login.html" class="btn-mova">Accedi al tuo account MoVA</a>
+                </div>
+            </div>
         {% endif %}
 
         <footer>
