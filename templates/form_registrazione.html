@@ -14,6 +14,20 @@
 </head>
 <body>
     <div class="registrazione-container">
+        
+        {% if registrato %}
+        <div class="FORM">
+            <h1 class="successo-titolo">REGISTRAZIONE AVVENUTA CON SUCCESSO</h1>
+            <p class="successo-testo">Sei ufficialmente registrato al MoVA</p>
+            
+            <P class="contenitore-link">
+                <A href="/vetrina.html" class="link-successo">Torna alla vetrina</A>
+                <SPAN class="separatore">|</SPAN>
+                <A href="/form_login.html" class="link-successo">Accedi</A>
+            </P>
+        </div>
+
+        {% else %}
         <div class="FORM">              <!--Inserisce dati in entità "utente"-->
             <h1 id = "titolo-registrazione">REGISTRAZIONE</h1>
             <form action="/registrazione" method="post">
@@ -55,7 +69,8 @@
                 <a href="form_login.html" class="btn-mova">Accedi al tuo account MoVA</a>
             </div>
         </div>
-    
+        {% endif %}
+
         <footer>
             <P>&copy;2026 MoVA - Museum of Virtual Art. Created by Nicolò Carbone and Gabriele Di Martino</P>
         </footer>

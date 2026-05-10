@@ -298,7 +298,7 @@ def registazione():
     conn.execute("INSERT INTO utente (nome, cognome, username, email, password) VALUES (?, ?, ?, ?, ?)", (nome, cognome, username, email, password_hash))
     conn.commit()
     conn.close()
-    return redirect("/vetrina.html")
+    return render_template("/form_registrazione.html", registrato=True)
 
 
 #endpoint per testare se email o utente esistono già durante la registrazione
