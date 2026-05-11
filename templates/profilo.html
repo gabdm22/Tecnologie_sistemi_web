@@ -35,6 +35,7 @@
             <H3>Bentornato <b>{{session['username']}}</b>.</H3>
             <P>Qui trovi le opere che hai acquistato nel tempo</P>
             
+            <!--STATISTICHE COLLEZIONE-->
             <DIV class="stats-box">
                 <DIV class="stat-item">
                     <SPAN class="label">Valore totale della collezione</SPAN>
@@ -46,6 +47,7 @@
                 </DIV>
             </DIV>
 
+            <!--COLLEZIONE-->
             {% if acquisti %}
                 <DIV class="acquisti">
                     {% for acq in acquisti %}
@@ -79,6 +81,7 @@
             <H1>Le mie vendite</H1>
             <P>Qui trovi le opere da te vendute</P>
 
+            <!--STATISTICHE VENDITE-->
             <DIV class="stats-box">
                 <DIV class="stat-item">
                     <SPAN class="label">Incasso totale dalle vendite</SPAN>
