@@ -1,10 +1,10 @@
-const form = document.querySelector('#login-form');
-const errorBox = document.getElementById('error-box');
+const form = document.querySelector('#login-form'); // Seleziona il form di login
+const errorBox = document.getElementById('error-box'); 
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault(); // Impedisce il ricaricamento della pagina
 
-    const formData = new FormData(form);
+    const formData = new FormData(form); // Crea un oggetto FormData con i dati del form
     
     // Invio asincrono
     const response = await fetch('/login', {  //chimata al server per il login

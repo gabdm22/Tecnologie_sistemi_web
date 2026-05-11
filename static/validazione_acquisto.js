@@ -10,20 +10,20 @@ document.addEventListener('DOMContentLoaded', function(){
 
     if(form && carta && cvv && btn_acq){
         function controllaPagamento(){
-            let soloNumeri = carta.value.replace(/\D/g, '');
+            let soloNumeri = carta.value.replace(/\D/g, '');// rimuove tutti i caratteri non numerici
 
             carta.value = soloNumeri.replace(/(.{4})/g, '$1 ').trim();  // inserisce spaziatura ogni 4 caratteri
 
 
             let cartaValida = (soloNumeri.length==16);
-            let cvvValido = (cvv.value.length==3 && !isNaN(cvv.value));
+            let cvvValido = (cvv.value.length==3 && !isNaN(cvv.value)); 
 
             //contro validità carta dal numero
             if(soloNumeri==''){
-                carta.classList.remove('input-successo', 'input-errore');
+                carta.classList.remove('input-successo', 'input-errore'); 
             }
             else if(cartaValida){
-                carta.classList.remove('input-errore');
+                carta.classList.remove('input-errore'); 
                 carta.classList.add('input-successo');
             }
             else{
@@ -46,10 +46,10 @@ document.addEventListener('DOMContentLoaded', function(){
             }
 
             
-            let nomeValido = nome.checkValidity();
-            let titolareValido = titolare.checkValidity();
-            let indirizzoValido = indirizzo.checkValidity();
-            let scadenzaValida = scadenza.checkValidity();
+            let nomeValido = nome.checkValidity(); //controllo validità nome e cognome
+            let titolareValido = titolare.checkValidity();//controllo validità titolare
+            let indirizzoValido = indirizzo.checkValidity();//controllo validità indirizzo
+            let scadenzaValida = scadenza.checkValidity();//controllo validità scadenza
 
             //sblocco l'acquisto se entrambi rispettano il formato
             if(nomeValido && titolareValido && indirizzoValido && scadenzaValida && cartaValida && cvvValido){

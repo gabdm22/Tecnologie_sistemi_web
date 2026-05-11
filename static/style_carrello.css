@@ -43,7 +43,7 @@ body{
 a {
     text-decoration: none;
 }
-.carello-totale{
+.carrello-totale{
     text-align: right;
     border-top: 2px solid #333;
     padding-top: 20px;
@@ -124,16 +124,16 @@ a {
 }
 
 footer{
-    margin-top: 20px;
+    margin-top: 20px; 
     text-align: center;
-    font-size: 0.8rem;
+    font-size: 0.8rem; 
 }
 
 
 
 @media (max-width: 768px){
     .carrello-container{
-        width: 95%;
+        width: 95%; 
         padding: 20px 15px;
     }
 
@@ -154,7 +154,7 @@ footer{
         box-sizing: border-box;
     }
 
-    .carello-totale{
+    .carrello-totale{   
         text-align: center;
         padding-top: 15px;
     }
