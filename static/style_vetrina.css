@@ -230,6 +230,14 @@ body{
     color: #1a1a1a;
 }
 
+.azioni-acquisto a{
+    text-decoration: none;
+}
+
+.azioni-acquisto a:hover{
+    text-decoration: none;
+}
+
 .button_acquista{
     background-color: #1a1a1a;
     color: white;
