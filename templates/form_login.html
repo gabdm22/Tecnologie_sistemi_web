@@ -6,6 +6,7 @@
     <title>Accedi al tuo account MoVA</title>
     <link rel="stylesheet" href="/static/style_form_login.css">
     <link rel="icon" href="/static/favicon.png" type="image/png">
+    <SCRIPT src="/static/svuota_form.js" defer></SCRIPT>    <!-- script per svuotare il campo password quando si torna alla pagina -->
     <SCRIPT src="/static/controllo_password.js" defer></SCRIPT>    <!-- script per controllo requisiti password -->
 </head>
 <body>
@@ -14,7 +15,7 @@
         <div class="FORM">          
             <h1 id="titolo-login">LOGIN</h1> 
              <div id="error-box" class="alert-error"></div>
-            <form id="login-form">
+            <form id="login-form" autocomplete="off">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
 

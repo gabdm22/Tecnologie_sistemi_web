@@ -323,6 +323,7 @@ def verifica_unicita():
 #pagina login
 @app.route("/form_login.html")
 def login():
+    session.clear()
     return render_template("form_login.html")
 #login 
 @app.route("/login", methods=["POST"])
@@ -345,8 +346,9 @@ def effettua_login():
 # logout
 @app.route('/logout')
 def logout():
-    session.pop('username', None)
-    return redirect('/vetrina.html')
+   # session.pop('username', None)
+   session.clear() # Azzera completamente la sessione
+   return redirect('/vetrina.html')
 
 
 # -----------------------------------------------------------------------
@@ -410,7 +412,14 @@ def assistenza():
 
     return render_template("form_assistenza.html", inviato=False)
 
-
+#----------------------------blocca cache---------------------------
+@app.after_request
+def add_header(response):
+    if 'text/html' in response.content_type:
+        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '-1'
+    return response
 if __name__=="__main__":
     app.run(host='0.0.0.0', port=5500, debug=True)
 

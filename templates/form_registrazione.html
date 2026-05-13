@@ -11,6 +11,7 @@
     <SCRIPT src="/static/validazione_password.js" defer></SCRIPT>   <!-- script per controllo conferma password -->
     <SCRIPT src="/static/controllo_email.js" defer></SCRIPT>   <!-- script per controllo email e username già esistenti -->
     <SCRIPT src="/static/validazione_registrazione.js" defer></SCRIPT>
+    <SCRIPT src="/static/svuota_form.js" defer></SCRIPT>    <!-- script per svuotare i campi quando si torna alla pagina -->
 </head>
 <body>
     <div class="registrazione-container">
@@ -29,7 +30,7 @@
         {% else %}
             <div class="FORM">              <!--Inserisce dati in entità "utente"-->
                 <h1 id = "titolo-registrazione">REGISTRAZIONE</h1>
-                <form action="/registrazione" method="post">
+                <form action="/registrazione" method="post" id="registrazione-form" autocomplete="off">
                     <label for="Nome">Nome:</label>
                     <input type="text" id="Nome" name="nome">
                     <label for="Cognome">Cognome:</label>
