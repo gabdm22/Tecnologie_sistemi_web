@@ -17,8 +17,10 @@ document.addEventListener('DOMContentLoaded', function(){
         // controlla se ci sono messaggi di errore. se è "none" allora è ok
         let req_ok = window.getComputedStyle(err_req).display=='none';
         let pass_ok = window.getComputedStyle(err_coinc).display=='none';
+        let email_wrong = document.getElementById('Email-feedback').textContent.includes("❌");
+        let user_wrong = document.getElementById('Username-feedback').textContent.includes("❌");
 
-        if(pieni && req_ok && pass_ok){
+        if(pieni && req_ok && pass_ok && !email_wrong && !user_wrong){
             btn_reg.disabled = false;
             btn_reg.style.cursor = 'pointer';
             btn_reg.style.opacity = '1';

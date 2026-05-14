@@ -1,11 +1,15 @@
 document.addEventListener('DOMContentLoaded', function(){
     const email = document.getElementById('Email');
     const feedback = document.getElementById('Email-feedback');
+    const btn_reg = document.getElementById('registrazione-btn');
 
     const regex_email = /^[a-z0-9.]+@[a-z0-9.-]+\.[a-z]{2,}$/;
 
     email.addEventListener('input', function(){
         const valore = this.value.trim();
+
+        if(!event.isTrusted) return;
+
         if(valore.length==0){
             feedback.textContent = "";
             feedback.className = "feedback-text";
@@ -19,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function(){
         else{
             feedback.textContent = "❌ Formato email non corretto";
             feedback.className = "feedback-text errore";
-            //feedback.style.color = "red";
+            btn_reg.disabled = true;
         }
     });
 });

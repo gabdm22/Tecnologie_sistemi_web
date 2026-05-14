@@ -5,6 +5,10 @@ function attivaControllo(idInput, nomeColonna) {
     elemento.addEventListener('blur', function() {
         const valoreInviato = this.value.trim(); // prendo il valore dell'input
 
+        if(feedback.textContent.includes("❌")){
+            return;
+        }
+
         if (valoreInviato.length > 0) {
             fetch('/verifica-unicita', { //chiamata al server per verificare l'unicità tramite fetch api nativa js
                 method: 'POST',
@@ -21,11 +25,13 @@ function attivaControllo(idInput, nomeColonna) {
                     feedback.textContent = "❌ Già in uso";
                     feedback.className = "feedback-text errore"; 
                 }
+
+                elemento.dispatchEvent(new Event('input'));
             });
         }
         else{
             feedback.textContent = "";
-            feedback.className = "feedback-test";
+            feedback.className = "feedback-text";
         }
     });
 }
