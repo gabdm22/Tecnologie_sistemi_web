@@ -3,7 +3,7 @@ function attivaControllo(idInput, nomeColonna) {
     const feedback = document.getElementById(idInput + '-feedback'); // query al dom per prendere il div del feedback
 
     elemento.addEventListener('blur', function() {
-        const valoreInviato = this.value; // prendo il valore dell'input
+        const valoreInviato = this.value.trim(); // prendo il valore dell'input
 
         if (valoreInviato.length > 0) {
             fetch('/verifica-unicita', { //chiamata al server per verificare l'unicità tramite fetch api nativa js
@@ -22,6 +22,10 @@ function attivaControllo(idInput, nomeColonna) {
                     feedback.className = "feedback-text errore"; 
                 }
             });
+        }
+        else{
+            feedback.textContent = "";
+            feedback.className = "feedback-test";
         }
     });
 }
