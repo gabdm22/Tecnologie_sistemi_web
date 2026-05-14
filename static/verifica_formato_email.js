@@ -1,0 +1,25 @@
+document.addEventListener('DOMContentLoaded', function(){
+    const email = document.getElementById('Email');
+    const feedback = document.getElementById('Email-feedback');
+
+    const regex_email = /^[a-z0-9.]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+    email.addEventListener('input', function(){
+        const valore = this.value.trim();
+        if(valore.length==0){
+            feedback.textContent = "";
+            feedback.className = "feedback-text";
+            return;
+        }
+        
+        if(regex_email.test(valore)){
+            feedback.textContent = "";
+            feedback.className = "feedback-text disponibile";
+        }
+        else{
+            feedback.textContent = "❌ Formato email non corretto";
+            feedback.className = "feedback-text errore";
+            //feedback.style.color = "red";
+        }
+    });
+});
