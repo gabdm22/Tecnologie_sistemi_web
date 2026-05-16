@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', function(){
     function checkGenerale(){
         let pieni = true;
 
-        input.forEach(i=>{
+        input.forEach(i=>{  
             if(i.value.trim() ===''){
-                pieni = false;
+                pieni = false; 
             }
         });
 

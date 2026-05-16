@@ -3,16 +3,16 @@ document.addEventListener('DOMContentLoaded', function(){
     const feedback = document.getElementById('Email-feedback');
     const btn_reg = document.getElementById('registrazione-btn');
 
-    const regex_email = /^[a-z0-9.]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    const regex_email = /^[a-z0-9.]+@[a-z0-9.-]+\.[a-z]{2,}$/; // Espressione regolare per il formato email
 
     email.addEventListener('input', function(){
-        const valore = this.value.trim();
+        const valore = this.value.trim(); // Rimuove spazi bianchi all'inizio e alla fine
 
         if(!event.isTrusted) return;
 
         if(valore.length==0){
-            feedback.textContent = "";
-            feedback.className = "feedback-text";
+            feedback.textContent = ""; // Rimuove il messaggio di feedback se il campo è vuoto
+            feedback.className = "feedback-text"; 
             return;
         }
         
