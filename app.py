@@ -2,12 +2,18 @@ from flask import Flask, jsonify, request, render_template, redirect, session, u
 import sqlite3
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 app = Flask(__name__)
 
-app.secret_key = 'secret_key_mova'
+# app.secret_key = 'secret_key_mova'
+
+# genera una chiave casuale di 24 byte ogni volta che il server parte
+app.secret_key = os.urandom(24)
+
+# imposto un timer per mantenere la sessione attiva 60 minuti
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
 
 os.makedirs("static/uploads", exist_ok=True)
 
@@ -256,6 +262,7 @@ def rimuovi_dal_carrello(id_opera):
 
 
 
+
 # -----------------------------AUTENTICAZIONE E PROFILO -----------------------------------------
 # -----------------------------------------------------------------------
 
@@ -328,13 +335,13 @@ def login():
 #login 
 @app.route("/login", methods=["POST"])
 def effettua_login():
+    session.permanent = True    # attiva il timer della sessione
     username = request.form["username"]
     password = request.form["password"]
     conn = get_connection_db()
     utente = conn.execute("SELECT * FROM utente WHERE username = ?", (username,)).fetchone()
     conn.close()
     if utente and check_password_hash(utente['password'],password):
-        # session['utente_id'] = utente['id']
         session['username'] = utente['username']
         return jsonify({"success": True, "redirect": "/vetrina.html"}), 200
     else:
