@@ -13,8 +13,11 @@ Per la realizzazione del lato frontend sono stati impiegati i linguaggi:
 Per la realizzazione del lato backend sono stati impiegati i linguaggi:
 - **Python** -> libreria **Flask** di Python
 
+Per il rendering dinamico:
+- **Jinja2** -> motore di templating integrato in Flask di Python
+
 Per la realizzazione del database è stato utilizzato sqlite:
-- **Python** -> libreria **sqlite3** di Python
+- **SQLite** -> gestito con libreria **sqlite3** di Python
 <br><br>
 
 **SETUP**
@@ -25,7 +28,7 @@ assicurati di aver installato la libreria Flask di Python digitando su terminale
 ```
 
 2. <b>Inizializzazione del database:</b><br>
-esegui il programma init_db.py presente nella cartella del progetto per creare il file "mova_db.db", databse del progetto.
+esegui il programma init_db.py presente nella cartella del progetto per creare il file "mova_db.db", database del progetto.
 
 3. <b>Avvia il server:</b><br>
 esegui il programma app.py per avviare il server del progetto. Il sito sarà visibile in locale al link:
