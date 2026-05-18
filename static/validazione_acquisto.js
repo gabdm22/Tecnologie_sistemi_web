@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const indirizzo = document.getElementById('indirizzo'); 
     const carta = document.getElementById('numero_carta');
     const scadenza = document.getElementById('scadenza');
+    const feedback = document.getElementById('feedback-scadenza');
     const cvv = document.getElementById('cvv');
     const btn_acq = document.getElementById('acquista');
 
@@ -45,11 +46,49 @@ document.addEventListener('DOMContentLoaded', function(){
                 cvv.classList.add('input-errore');
             }
 
-            
+            let scadenzaValida = false;
+            let valore_scad = scadenza.value;
+            if(valore_scad!=''){
+                const scad = valore_scad.split('-');
+                const anno = parseInt(scad[0], 10);
+                const mese = parseInt(scad[1], 10);
+
+                const oggi = new Date();
+                const anno_curr = oggi.getFullYear();
+                const mese_curr = oggi.getMonth() + 1;
+
+                if(anno>anno_curr || anno==anno_curr && mese>=mese_curr){
+                    scadenzaValida = true;
+                }
+            }
+
+            if(valore_scad==''){
+                scadenza.classList.remove('input-successo', 'input-errore');
+                if(feedback){
+                    feedback.textContent = '';
+                    feedback.className = 'feedback-text'
+                }
+            }
+            else if(scadenzaValida){
+                scadenza.classList.remove('input-errore');
+                scadenza.classList.add('input-successo');
+                if(feedback){
+                    feedback.textContent = '';
+                    feedback.className = 'feedback-text disponibile'
+                }
+            }
+            else{
+                scadenza.classList.remove('input-successo');
+                scadenza.classList.add('input-errore');
+                if(feedback){
+                    feedback.textContent = '❌ La carta è scaduta';
+                    feedback.className = 'feedback-text errore'
+                }
+            }
+
             let nomeValido = nome.checkValidity(); //controllo validità nome e cognome
             let titolareValido = titolare.checkValidity();//controllo validità titolare
             let indirizzoValido = indirizzo.checkValidity();//controllo validità indirizzo
-            let scadenzaValida = scadenza.checkValidity();//controllo validità scadenza
 
             //sblocco l'acquisto se entrambi rispettano il formato
             if(nomeValido && titolareValido && indirizzoValido && scadenzaValida && cartaValida && cvvValido){

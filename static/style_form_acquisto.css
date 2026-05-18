@@ -97,6 +97,27 @@ button{
     background-color: #333333;
 }
 
+.feedback-text:empty {
+    display: none; /* Nasconde il messaggio di feedback quando è vuoto, evitando spazi inutili sotto i campi di input. */
+}
+
+.feedback-text {
+    display: block; 
+    font-size: 0.85em; 
+    margin-bottom: -20px;
+    margin-left: 5px;
+    margin-top: -15px;
+}
+
+.feedback-text.disponibile {
+    color: green;
+    font-weight: bold;
+}
+
+.feedback-text.errore {
+    color: red;
+    font-weight: bold;
+}
 
 
 /*   CARICAMENTO BOTTONE ACQUISTO   */
