@@ -7,8 +7,6 @@ from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
-# app.secret_key = 'secret_key_mova'
-
 # genera una chiave casuale di 24 byte ogni volta che il server parte
 app.secret_key = os.urandom(24)
 
@@ -353,7 +351,6 @@ def effettua_login():
 # logout
 @app.route('/logout')
 def logout():
-   # session.pop('username', None)
    session.clear() # Azzera completamente la sessione
    return redirect('/vetrina.html')
 
