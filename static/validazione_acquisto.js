@@ -47,9 +47,9 @@ document.addEventListener('DOMContentLoaded', function(){
             }
 
             let scadenzaValida = false;
-            let valore_scad = scadenza.value;
+            let valore_scad = scadenza.value; 
             if(valore_scad!=''){
-                const scad = valore_scad.split('-');
+                const scad = valore_scad.split('-'); // divide la stringa in anno e mese
                 const anno = parseInt(scad[0], 10);
                 const mese = parseInt(scad[1], 10);
 
