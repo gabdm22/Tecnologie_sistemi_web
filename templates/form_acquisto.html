@@ -8,7 +8,8 @@
         <LINK rel="icon" href="/static/favicon.png" type="image/png">
         <SCRIPT src="/static/validazione_acquisto.js" defer></SCRIPT>
         <SCRIPT src="/static/transazione.js" defer></SCRIPT> <!--script che simula la transazione-->
-        <SCRIPT src = "/static/svuota_form_acquisto.js" defer></SCRIPT>  
+        <SCRIPT src = "/static/svuota_form_acquisto.js" defer></SCRIPT>
+        <SCRIPT src="/static/blocca_indietro.js"></SCRIPT>
     </HEAD>
 
     <BODY>
@@ -23,7 +24,7 @@
             {% else %}
                 <H1 id="titolo">Acquista</H1>
                 <H3 id="sottotitolo">Inserisci i dati per completare l'acquisto</H3>
-                <FORM action="/acquista" id="form_acquisto" method="post" name="form">
+                <FORM action="/acquista" id="form_acquisto" method="post" name="form" autocomplete="off">
                     <INPUT type="hidden" name="da_carrello" value="{{ 'true' if da_carrello else 'false' }}">
                     {% if not da_carrello and opere|length >0 %}
                         <INPUT type="hidden" name="id_opera" value="{{ opere[0]['id'] }}">
