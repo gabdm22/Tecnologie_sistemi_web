@@ -8,7 +8,7 @@ Il sito consiste in una galleria d'arte virtuale nella quale l'utente può osser
 Per la realizzazione del lato frontend sono stati impiegati i linguaggi:
 - **HTML** -> utilizzato per struttura e semantica delle pagine
 - **CSS** -> utilizzato per stile e formattazione dei contenuti
-- **JavaScript** -> utilizzato per il dinamismo delle pagine
+- **JavaScript** -> utilizzato per il dinamismo delle pagine (validazione form, interazioni, ecc.)
 
 Per la realizzazione del lato backend sono stati impiegati i linguaggi:
 - **Python** -> libreria **Flask** di Python
@@ -28,11 +28,18 @@ assicurati di aver installato la libreria Flask di Python digitando su terminale
 ```
 
 2. <b>Inizializzazione del database:</b><br>
-esegui il programma init_db.py presente nella cartella del progetto per creare il file "mova_db.db", database del progetto.
+esegui il programma init_db.py presente nella cartella del progetto per creare il file "mova_db.db", database del progetto:<br>
+```bash
+	python init_db.py
+```
 
 3. <b>Avvia il server:</b><br>
-esegui il programma app.py per avviare il server del progetto. Il sito sarà visibile in locale al link:
-	http://127.0.0.1:5000
+esegui il programma app.py per avviare il server del progetto:<br>
+```bash
+	python app.py
+```
+Il sito sarà visibile in locale sulla porta 5500, precisamente al link:
+	http://127.0.0.1:5500
 
 <br><br>
 **AUTORI**
