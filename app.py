@@ -259,9 +259,14 @@ def mostra_carrello():
     conn.close()
     return render_template("carrello.html", opere=opere_in_carrello,totale=totale)
 
+
 #aggiungi al carrello
 @app.route('/aggiungi_al_carrello/<int:id_opera>')
 def aggiungi_al_carrello(id_opera):
+    """
+    Aggiunge alla tabella "in_carrello" l'opera identificata da "id_opera"
+    """
+    
     username = session.get('username')
     if not username:
         return redirect("/form_login.html")
@@ -273,9 +278,15 @@ def aggiungi_al_carrello(id_opera):
         pass    
     conn.close()
     return redirect(url_for('mostra_carrello'))
+
+
 #rimuovi dal carrello
 @app.route('/rimuovi_dal_carrello/<int:id_opera>')
 def rimuovi_dal_carrello(id_opera):
+    """
+    Rimuove dalla tabella "in_carrello" l'opera identificata da "id_opera"
+    """
+
     username = session.get('username')
     if not username:
         return redirect("/form_login.html")
