@@ -8,6 +8,8 @@
         <LINK rel="icon" href="/static/favicon.png" type="image/png">
         <SCRIPT src="/static/controllo_prezzo.js" defer></SCRIPT>
         <SCRIPT src="/static/anteprima_immagine.js" defer></SCRIPT>
+        <SCRIPT src="/static/svuota_form_vendita.js" defer></SCRIPT>
+        <SCRIPT src="/static/blocca_indietro.js" defer></SCRIPT>
     </HEAD>
 
     <BODY>
@@ -29,7 +31,7 @@
             {% else %}
             
             <H3 id="sottotitolo">Carica qui la tua opera</H3>
-            <FORM id="form" action="/upload" method="POST" name="form" enctype="multipart/form-data">   <!--Inserisce dati in entità "opera"-->
+            <FORM id="form" action="/upload" method="POST" name="form" enctype="multipart/form-data" autocomplete="off">   <!--Inserisce dati in entità "opera"-->
                 <LABEL>Nome opera: </LABEL>
                 <INPUT id="nome" name="nome" type="text" minlength="1" maxlength="30" required>
                 <br><br>
