@@ -492,9 +492,9 @@ def add_header(response):
     """
 
     if 'text/html' in response.content_type:
-        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
-        response.headers['Pragma'] = 'no-cache'
-        response.headers['Expires'] = '-1'
+        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0' #indica al browser di non memorizzare la pagina nella cache
+        response.headers['Pragma'] = 'no-cache' #indica al browser di non memorizzare la pagina nella cache (per compatibilità con HTTP/1.0)
+        response.headers['Expires'] = '-1' #indica al browser che la pagina è già scaduta e non deve essere memorizzata nella cache
     return response
 
 # -----------------------------------------------------------------------
