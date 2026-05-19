@@ -26,6 +26,10 @@ def get_connection_db():
 #home page
 @app.route('/')
 def home():
+    """
+    Mostra la schermata di benvenuto al sito
+    """
+
     return render_template('welcome.html')
 
 
@@ -36,6 +40,10 @@ def home():
 # vetrina
 @app.route('/vetrina.html')
 def mostra_vetrina():
+    """
+    Mostra la pagina della vetrina utilizzando jinja2 per il rendering dinamico dei dati in database
+    """
+
     conn = get_connection_db()
     opere_carrello = []
     utente_loggato = session.get('username')
@@ -61,6 +69,10 @@ def mostra_vetrina():
 # pagina vendita
 @app.route('/form_vendita.html')
 def vendi():
+    """
+    Mostra la pagina del form per la vendita delle opere
+    """
+
     autore = session.get('username')
     if not autore:  # blocco l'accesso alla pagina di vendita a chi non è loggato 
         return redirect('/form_login.html')
@@ -71,6 +83,10 @@ def vendi():
 # vendita
 @app.route('/upload', methods=["POST"])
 def carica_opera():
+    """
+    Effettua l'inserimento in database dei dati inseriti dall'utente in form di vendita
+    """
+
     autore = session.get('username')
     if not autore:  # blocco la vendita a chi non è loggato
         return redirect('/form_login.html')
@@ -102,6 +118,10 @@ def carica_opera():
 # pagina acquisto
 @app.route('/form_acquisto.html')
 def mostra_pag_acquisto():
+    """
+    Mostra la pagina del form di acquisto
+    """
+
     utente_loggato = session.get('username')
     if not utente_loggato:
         return redirect("/form_login.html")
@@ -134,6 +154,10 @@ def mostra_pag_acquisto():
 
 @app.route('/acquista', methods=["POST"])
 def acquista_opera():
+    """
+    Inserisce in database i dati inseriti dall'utente nel form di acquisto ed effettua l'acquisto dell'opera
+    """
+
     utente_loggato = session.get('username')
     if not utente_loggato:
         return redirect("/form_login.html")
@@ -215,6 +239,10 @@ def acquista_opera():
 #pagina carrello
 @app.route('/carrello.html')
 def mostra_carrello():
+    """
+    Mostra la pagina del carrello utilizzando jinja2 per il rendering dinamico dei dati in database
+    """
+    
     utente_loggato = session.get('username')
     if not utente_loggato:
         return redirect("/form_login.html")
@@ -267,11 +295,21 @@ def rimuovi_dal_carrello(id_opera):
 # pagina registrazione
 @app.route('/form_registrazione.html')
 def registra():
+    """
+    Mostra la pagina del form di registrazione
+    """
+    
     return render_template("form_registrazione.html")
+
+
 
 # registrazione
 @app.route('/registrazione', methods=["POST"])
 def registazione():
+    """
+    Inserisce in database i dati di registrazione del form
+    """
+
     nome = request.form["nome"]
     cognome = request.form["cognome"]
     username = request.form["username"]
@@ -309,6 +347,10 @@ def registazione():
 #endpoint per testare se email o utente esistono già durante la registrazione
 @app.route('/verifica-unicita', methods=['POST'])
 def verifica_unicita():
+    """
+    Verifica che username e email che vengono inserite siano univoche
+    """
+
     data = request.get_json()
     campo = data.get('campo')
     valore = data.get('valore')
@@ -328,11 +370,21 @@ def verifica_unicita():
 #pagina login
 @app.route("/form_login.html")
 def login():
+    """
+    Mostra la pagina del form di login
+    """
+
     session.clear()
     return render_template("form_login.html")
+
+
 #login 
 @app.route("/login", methods=["POST"])
 def effettua_login():
+    """
+    Effettua il login con i dati inseriti. Se sono corretti crea la sessione della durata di 60 minuti
+    """
+
     session.permanent = True    # attiva il timer della sessione
     username = request.form["username"]
     password = request.form["password"]
@@ -351,6 +403,10 @@ def effettua_login():
 # logout
 @app.route('/logout')
 def logout():
+   """
+   Cancella la sessione corrente
+   """
+
    session.clear() # Azzera completamente la sessione
    return redirect('/vetrina.html')
 
@@ -360,6 +416,10 @@ def logout():
 # profilo
 @app.route('/profilo.html')
 def mostra_profilo():
+    """
+    Mostra la pagina del profilo dell'utente in sessione
+    """
+
     utente_loggato = session.get('username')
     if not utente_loggato:
         return redirect("/form_login.html")
@@ -389,6 +449,10 @@ def mostra_profilo():
 
 @app.route('/rimuovi/<int:id_ordine>/<int:id_opera>')
 def rimuovi_da_collezione(id_ordine, id_opera):
+    """
+    Effettua il soft-delete dell'opera in database passata in input aggiornando a 1 il valore del flag "rimosso"
+    """
+
     conn = get_connection_db()
     conn.execute("UPDATE ordine_opera SET rimosso=1 WHERE id_ordine=? AND id_opera=?", (id_ordine, id_opera))
     conn.commit()
@@ -404,6 +468,10 @@ def rimuovi_da_collezione(id_ordine, id_opera):
 # pagina assistenza
 @app.route('/form_assistenza.html', methods=['GET', 'POST'])
 def assistenza():
+    """
+    Mostra la pagina dell'assistenza
+    """
+
     if request.method == 'POST':
         oggetto = request.form['oggetto']
         mess = request.form['messaggio']
@@ -419,11 +487,18 @@ def assistenza():
 #----------------------------blocca cache---------------------------
 @app.after_request
 def add_header(response):
+    """
+    Blocca la cache del browser per le pagine html impedendo all'utente di tornare indietro su form già compilati
+    """
+
     if 'text/html' in response.content_type:
         response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
         response.headers['Pragma'] = 'no-cache'
         response.headers['Expires'] = '-1'
     return response
+
+# -----------------------------------------------------------------------
+
+
 if __name__=="__main__":
     app.run(host='0.0.0.0', port=5500, debug=True)
-
